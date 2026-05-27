@@ -1,0 +1,31 @@
+name = "gosurf"
+main = "workers/index.ts"
+compatibility_date = "2024-12-23"
+type = "javascript"
+
+[env.production]
+name = "gosurf-production"
+
+[env.staging]
+name = "gosurf-staging"
+
+[build]
+command = "npm run build"
+cwd = "."
+
+# Optional: Database bindings (uncomment when ready)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "survive-at-all-costs-db"
+# database_id = "your-database-id"
+
+# Optional: KV Namespace (uncomment when ready)
+# [[kv_namespaces]]
+# binding = "KV"
+# id = "your-kv-id"
+# preview_id = "your-preview-kv-id"
+
+# Optional: R2 Storage (uncomment when ready)
+# [[r2_buckets]]
+# binding = "BUCKET"
+# bucket_name = "survive-at-all-costs"
