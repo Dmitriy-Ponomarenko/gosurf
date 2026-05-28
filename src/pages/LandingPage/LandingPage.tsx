@@ -13,7 +13,7 @@ import TravelSection from '@/components/LandingPage/TravelSection/TravelSection'
 import styles from './LandingPage.module.css';
 import '../../index.css';
 
-export const LandingPage = () => {
+const LandingPage = () => {
   return (
     <section className={`${styles.homeSection}`}>
       <div className={`${styles.homeContainer}`}>
@@ -21,12 +21,20 @@ export const LandingPage = () => {
         <HeroSection />
         <LocationSection />
         <Curtains />
-        <TravelSection />
+        <section id="travel-section">
+          <TravelSection />
+        </section>
         <BookFlightSection />
-        <ResortsSection />
-        <BuySurfBoardSection />
+        <section id="resorts-section">
+          <ResortsSection />
+        </section>
+        <section id="surfboard-section">
+          <BuySurfBoardSection />
+        </section>
         <Footer />
       </div>
     </section>
   );
 };
+
+export default LandingPage;
