@@ -1,8 +1,13 @@
 // src/components/LandingPage/HeroSection/HeroSection.tsx
 
-import styles from './HeroSection.module.css';
-import '../../index.css';
+import React from 'react';
 
-export const HeroSection = () => {
-  return <section className={styles.root}></section>;
+const HeroSection: React.FC = () => {
+  return (
+    <section>
+      <h1>Hero Section</h1>
+    </section>
+  );
 };
+
+export default HeroSection;

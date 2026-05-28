@@ -1,7 +1,9 @@
-export const LocationSection = () => {
-  return (
-    <section>
-      <h2>Location Section</h2>
-    </section>
-  );
+// src/components/LandingPage/LocationSection/LocationSection.tsx
+
+import React from 'react';
+
+const LocationSection: React.FC = () => {
+  return <section></section>;
 };
+
+export default LocationSection;
