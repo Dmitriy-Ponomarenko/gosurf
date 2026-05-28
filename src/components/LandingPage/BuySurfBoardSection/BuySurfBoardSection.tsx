@@ -3,7 +3,11 @@
 import React from 'react';
 
 const BuySurfBoardSection: React.FC = () => {
-  return <section></section>;
+  return (
+    <section>
+      <h2>Buy a surfboard</h2>
+    </section>
+  );
 };
 
 export default BuySurfBoardSection;

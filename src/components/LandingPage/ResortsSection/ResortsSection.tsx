@@ -3,7 +3,11 @@
 import React from 'react';
 
 const ResortsSection: React.FC = () => {
-  return <section></section>;
+  return (
+    <section>
+      <h2>Resorts Section</h2>
+    </section>
+  );
 };
 
 export default ResortsSection;
