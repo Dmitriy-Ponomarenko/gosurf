@@ -1,7 +1,16 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    "target": "ES6"
+    "target": "ES6",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/workers/*": ["workers/*"],
+      "@/shared/*": ["shared/*"],
+      "@worker-config": ["worker-configuration.d.ts"],
+      "@/assets/*": ["src/assets/*"],
+      "@/components/*": ["src/components/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

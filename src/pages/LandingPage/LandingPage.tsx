@@ -1,17 +1,17 @@
-// src/pages/LandingPage/LandingPage.jsx
+// src/pages/LandingPage/LandingPage.tsx
 
-import React from 'react';
+import { Footer } from '@/components/Footer/Footer';
+import { BookFlightSection } from '@/components/LandingPage/CommentSection/CommentSection';
+import { Curtains } from '@/components/LandingPage/FeaturesSection/FeaturesSection';
+import { Header } from '@/components/LandingPage/Header/Sidebar';
+import { HeroSection } from '@/components/LandingPage/HeroSection/HeroSection';
+import { LocationSection } from '@/components/LandingPage/LocationSection/LocationSection';
+import { ResortsSection } from '@/components/LandingPage/NewsletterSection/NewsletterSection';
+import { BuySurfBoardSection } from '@/components/LandingPage/NewsletterSection/NewsletterSection';
+import { TravelSection } from '@/components/LandingPage/SRSection/SRSection';
+
 import styles from './LandingPage.module.css';
 import '../../index.css';
-import { Header } from '../../components/LandingPage/Header/Sidebar.js';
-import { HeroSection } from '../../components/LandingPageComp/HeroSection/HeroSection';
-import { LocationSection } from '../../components/LandingPageComp/AboutSection/AboutSection';
-import { Curtains } from '../../components/LandingPageComp/FeaturesSection/FeaturesSection';
-import { TravelSection } from '../../components/LandingPageComp/SRSection/SRSection.jsx';
-import { BookFlightSection } from '../../components/LandingPageComp/CommentSection/CommentSection';
-import { ResortsSection } from '../../components/LandingPageComp/NewsletterSection/NewsletterSection';
-import { BuySurfBoardSection } from '../../components/LandingPageComp/NewsletterSection/NewsletterSection';
-import { Footer } from '../../components/Footer/Footer';
 
 export const LandingPage = () => {
   return (

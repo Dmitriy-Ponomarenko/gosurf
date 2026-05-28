@@ -1,13 +1,8 @@
-// src/components/LandingPage/Header/Header.tsx
+// src/components/LandingPage/Header/Sidebar.tsx
 
-import React from 'react';
-import styles from './Header.module.css'
-improt '../../index.css';
+import styles from './Sidebar.module.css';
+import '../../index.css';
 
-export const Header = (): React.FC => {
-  return (
-    <header>
-
-    </header>
-  )
-}
+export const Header = () => {
+  return <header className={styles.root}></header>;
+};
