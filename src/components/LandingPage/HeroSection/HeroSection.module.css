@@ -1,0 +1,204 @@
+.heroSection {
+  width: 100%;
+  padding: 24px 16px 40px;
+  color: var(--text-main);
+}
+
+.heroHeader {
+  position: relative;
+  display: grid;
+  gap: 32px;
+  padding-left: 0;
+}
+
+.heroIntro {
+  max-width: 720px;
+  padding-top: 24px;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.heroTitle {
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  margin-bottom: 18px;
+}
+
+.heroSubtitle {
+  max-width: 620px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.heroMap {
+  margin-top: 40px;
+}
+
+.mapCard {
+  position: relative;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.mapHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.mapLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+
+.mapLocation {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.mapView {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+  border-radius: calc(var(--radius) - 4px);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.mapView strong {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--text-main);
+}
+
+.sliderSection {
+  margin-top: 48px;
+}
+
+.sliderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.sliderHeaderTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.sliderCard {
+  padding: 24px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  min-height: 260px;
+  display: grid;
+  gap: 18px;
+}
+
+.resortName {
+  font-size: 1.8rem;
+  line-height: 1.05;
+}
+
+.resortLocation {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.resortDescription {
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.resortMeta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.resortMetaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metaLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+.metaValue {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+@media screen and (min-width: 768px) {
+  .heroSection {
+    padding: 40px 32px 56px;
+  }
+
+  .heroHeader {
+    padding-left: 120px;
+  }
+
+  .heroMap {
+    margin-top: 64px;
+  }
+
+  .sliderCard {
+    min-height: 300px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .heroSection {
+    padding: 56px 48px 72px;
+  }
+
+  .heroHeader {
+    gap: 40px;
+  }
+
+  .heroMap {
+    margin-top: 72px;
+  }
+
+  .sliderSection {
+    margin-top: 64px;
+  }
+
+  .heroTitle {
+    font-size: clamp(3rem, 6vw, 6rem);
+  }
+}
