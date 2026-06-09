@@ -5,7 +5,7 @@ import React from 'react';
 const TravelSection: React.FC = () => {
   return (
     <section>
-      <h2>Travel Section</h2>
+      <h2>Travel Section ACTIVE</h2>
     </section>
   );
 };

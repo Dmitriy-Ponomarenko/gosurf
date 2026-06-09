@@ -1,0 +1,74 @@
+.curtainsSection {
+  padding: 2rem 0;
+}
+
+.swiperWrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* make slides overlap visually */
+:global(.swiper) {
+  padding: 2rem 0 3rem;
+}
+
+:global(.swiper-slide) {
+  width: 360px !important;
+}
+
+/* Position navigation arrows on top-right of the section */
+:global(.swiper-button-next),
+:global(.swiper-button-prev) {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(15, 16, 18, 0.85);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* place prev slightly left of next */
+:global(.swiper-button-prev) {
+  right: 60px;
+}
+
+:global(.swiper-button-next):after,
+:global(.swiper-button-prev):after {
+  font-size: 18px;
+}
+
+/* ensure slides are visually stacked */
+.slide > div {
+  transform-origin: center center;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  :global(.swiper-slide) {
+    width: 300px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  :global(.swiper-slide) {
+    width: 220px !important;
+  }
+  :global(.swiper-button-next),
+  :global(.swiper-button-prev) {
+    display: none;
+  }
+}

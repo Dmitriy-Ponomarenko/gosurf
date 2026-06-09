@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
+import DevComponents from '../pages/DevComponents/DevComponents';
+import DevIcons from '../pages/DevIcons/DevIcons';
 import LandingPage from '../pages/LandingPage/LandingPage';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
@@ -12,6 +14,8 @@ export const App = () => {
     <Routes>
       {/* Public routes */}
       <Route path="/" element={<LandingPage />} />
+      <Route path="/dev-icons" element={<DevIcons />} />
+      <Route path="/dev-components" element={<DevComponents />} />
 
       {/* Authentication routes */}
       <Route path="/signin" element={<SignInPage />} />

@@ -1,0 +1,56 @@
+.curtain {
+  position: relative;
+  height: 520px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  overflow: hidden;
+  display: block;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+.title {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  z-index: 4;
+}
+
+.leftLabel {
+  position: absolute;
+  left: -3.6rem;
+  top: 50%;
+  transform: rotate(-90deg) translateY(-50%);
+  transform-origin: left center;
+  z-index: 4;
+}
+
+.leftLabel span {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.mask {
+  position: absolute;
+  inset: 0;
+  background: #1c2121;
+  opacity: 0.72;
+  z-index: 3;
+}
+
+/* make active slightly brighter if needed */
+/* active state can be customized if needed */

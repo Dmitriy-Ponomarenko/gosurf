@@ -16,6 +16,8 @@ type Resort = {
   description: string;
   date: string;
   region: string;
+  backgroundImage: string;
+  mapPoints: Array<{ label: string; x: number; y: number }>;
 };
 
 const resorts: Resort[] = [
@@ -26,8 +28,13 @@ const resorts: Resort[] = [
     condition: 'Radical',
     description:
       'Classic big-wave surf destination with towering curls, iconic reef breaks, and a strong island vibe.',
-    date: '20 06 2018',
+    date: '20 | 06 | 2018',
     region: 'West Shore',
+    backgroundImage: '/images/north-shore.jpg',
+    mapPoints: [
+      { label: 'Current Location', x: 80, y: 20 },
+      { label: 'West Shore - Oahu, HI', x: 50, y: 60 },
+    ],
   },
   {
     id: 'south-shore',
@@ -36,8 +43,13 @@ const resorts: Resort[] = [
     condition: 'Cruising',
     description:
       'Warm water, long rides, and easy takeoffs make this resort perfect for all-level surfers and travelers.',
-    date: '14 08 2019',
+    date: '14 | 08 | 2019',
     region: 'South Shore',
+    backgroundImage: '/images/south-shore.jpg',
+    mapPoints: [
+      { label: 'Current Location', x: 75, y: 25 },
+      { label: 'South Shore - Maui, HI', x: 40, y: 65 },
+    ],
   },
   {
     id: 'east-shore',
@@ -46,8 +58,13 @@ const resorts: Resort[] = [
     condition: 'Smooth',
     description:
       'A tropical getaway with mellow reefs, palm-fringed beaches, and sunset sessions over warm sand.',
-    date: '02 11 2020',
+    date: '02 | 11 | 2020',
     region: 'East Shore',
+    backgroundImage: '/images/east-shore.jpg',
+    mapPoints: [
+      { label: 'Current Location', x: 70, y: 30 },
+      { label: 'East Shore - Bali, ID', x: 45, y: 70 },
+    ],
   },
   {
     id: 'west-shore',
@@ -56,8 +73,13 @@ const resorts: Resort[] = [
     condition: 'Powerful',
     description:
       'Foggy mornings, dramatic cliffs, and powerful sets give this resort a dramatic coast-to-coast feel.',
-    date: '11 09 2021',
+    date: '11 | 09 | 2021',
     region: 'West Shore',
+    backgroundImage: '/images/west-shore.jpg',
+    mapPoints: [
+      { label: 'Current Location', x: 85, y: 15 },
+      { label: 'West Shore - Malibu, CA', x: 55, y: 55 },
+    ],
   },
 ];
 
@@ -80,73 +102,7 @@ const HeroSection: React.FC = () => {
     <section className={styles.heroSection}>
       <header className={styles.heroHeader}>
         <Sidebar />
-
-        <div className={styles.heroIntro}>
-          <span className={styles.heroEyebrow}>Go Surf</span>
-          <h1 className={styles.heroTitle}>{activeResort.title}</h1>
-          <p className={styles.heroSubtitle}>
-            {activeResort.description} Choose a resort below to update the map
-            view and see an adaptive travel experience for the most interesting
-            coastline.
-          </p>
-        </div>
       </header>
-
-      <div className={styles.heroMap}>
-        <div className={styles.mapCard}>
-          <div className={styles.mapHeader}>
-            <div>
-              <p className={styles.mapLabel}>Current Location</p>
-              <p className={styles.mapLocation}>{mapContent.location}</p>
-            </div>
-            <div>
-              <p className={styles.mapLabel}>Condition</p>
-              <p className={styles.mapLocation}>{mapContent.condition}</p>
-            </div>
-          </div>
-          <div className={styles.mapView}>
-            <strong>{mapContent.title}</strong>
-            <span>{`Map view updates based on the selected resort. Active resort: ${activeResort.title}.`}</span>
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.sliderSection}>
-        <div className={styles.sliderHeader}>
-          <span className={styles.sliderHeaderTitle}>Resort slider</span>
-        </div>
-
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={16}
-          onSlideChange={swiper => {
-            const nextResort = resorts[swiper.activeIndex];
-            if (nextResort) {
-              setActiveResort(nextResort);
-            }
-          }}
-        >
-          {resorts.map(resort => (
-            <SwiperSlide key={resort.id}>
-              <div className={styles.sliderCard}>
-                <h2 className={styles.resortName}>{resort.title}</h2>
-                <p className={styles.resortLocation}>{resort.region}</p>
-                <p className={styles.resortDescription}>{resort.description}</p>
-                <div className={styles.resortMeta}>
-                  <div className={styles.resortMetaItem}>
-                    <span className={styles.metaLabel}>Travel date</span>
-                    <span className={styles.metaValue}>{resort.date}</span>
-                  </div>
-                  <div className={styles.resortMetaItem}>
-                    <span className={styles.metaLabel}>Status</span>
-                    <span className={styles.metaValue}>{resort.condition}</span>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
     </section>
   );
 };

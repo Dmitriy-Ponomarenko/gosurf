@@ -16,7 +16,7 @@ const LandingPage = () => {
   return (
     <section className={`${styles.homeSection}`}>
       <div className={`${styles.homeContainer}`}>
-        <HeroSection />
+        {/* <HeroSection /> */}
         <LocationSection />
         <Curtains />
         <section id="travel-section">
