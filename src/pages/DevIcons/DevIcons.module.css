@@ -13,7 +13,7 @@
 
 .hero h1 {
   margin-bottom: 0.75rem;
-  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-size: clamp(40px, 4vw, 64px);
   letter-spacing: -0.04em;
 }
 
@@ -31,7 +31,7 @@
 
 .gridSection h2 {
   margin-bottom: 1.25rem;
-  font-size: 1.5rem;
+  font-size: 24px;
 }
 
 .tokenGrid,
@@ -106,12 +106,11 @@
 }
 
 .fontExample {
-  font-family: 'Fira Sans', sans-serif;
   line-height: 1.1;
 }
 
 .fontMeta {
-  font-size: 0.95rem;
+  font-size: 15, 2px;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -132,7 +131,7 @@
 
 .imageCard figcaption,
 .iconCard span {
-  font-size: 0.95rem;
+  font-size: 15, 2px;
 }
 
 .iconGrid {
@@ -235,7 +234,7 @@
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 22, 4px;
   cursor: pointer;
 }
 
@@ -263,7 +262,7 @@
 
 .previewLabel {
   margin-top: 0.75rem;
-  font-size: 0.95rem;
+  font-size: 15, 2px;
 }
 
 @keyframes fadeInOverlay {
@@ -312,7 +311,7 @@
   }
 
   .hero h1 {
-    font-size: clamp(2rem, 6vw, 3rem);
+    font-size: clamp(32px, 6vw, 48px);
   }
 
   .modal {

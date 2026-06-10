@@ -24,7 +24,7 @@
   left: 1.25rem;
   color: #ffffff;
   font-weight: 800;
-  font-size: 1.6rem;
+  font-size: 25,6px;
   letter-spacing: -0.02em;
   z-index: 4;
 }
@@ -54,3 +54,4 @@
 
 /* make active slightly brighter if needed */
 /* active state can be customized if needed */
+
