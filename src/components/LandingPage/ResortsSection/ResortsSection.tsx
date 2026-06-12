@@ -1,11 +1,16 @@
 // src/components/LandingPage/ResortsSection/ResortsSection.tsx
 
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
+import ItemCard from '../ItemCard/ItemCard';
+
+import styles from './ResortsSection.module.css';
+import '../../../index.css';
 
 type Resort = {
   id: number;
@@ -68,21 +73,12 @@ const initialResort: Resort = resorts[0] ?? {
 
 const ResortsSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [nights, setNights] = useState(5);
-  const [guests, setGuests] = useState(4);
   const swiperRef = useRef<SwiperType | null>(null);
 
   const resort = resorts[activeIndex] ?? initialResort;
 
-  const price = useMemo(
-    () => resort.basePrice * nights * guests,
-    [resort.basePrice, nights, guests]
-  );
-
   const handleSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.activeIndex);
-    setNights(5);
-    setGuests(4);
   };
 
   const handleSwiperInit = (swiper: SwiperType) => {
@@ -98,77 +94,69 @@ const ResortsSection: React.FC = () => {
   };
 
   return (
-    <section aria-labelledby="resorts-heading">
-      <div>
-        <p id="resorts-heading">Resort</p>
-        <Swiper
-          modules={[Navigation]}
-          navigation
-          slidesPerView={1}
-          onSwiper={handleSwiperInit}
-          onSlideChange={handleSlideChange}
-        >
-          {resorts.map(item => (
-            <SwiperSlide key={item.id}>
-              <h2>{item.title}</h2>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+    <section
+      className={`${styles.resortsSection} section`}
+      aria-labelledby="resorts-heading"
+    >
+      <div className={`${styles.resortsContainer} container`}>
+        <div className={styles.resortsHeader}>
+          <p className={styles.resortsLabel} id="resorts-heading">
+            Resort
+          </p>
+        </div>
 
-        <div>
+        <div className={styles.swiperWrapper}>
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={1}
+            spaceBetween={0}
+            loop={true}
+            onSwiper={handleSwiperInit}
+            onSlideChange={handleSlideChange}
+            className={styles.swiper}
+          >
+            {resorts.map(item => (
+              <SwiperSlide key={item.id} className={styles.slidesContainer}>
+                <h2>{item.title}</h2>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        <div className={styles.navigationButtons}>
           <button
             type="button"
+            className={styles.navButton}
             aria-label="Previous resort"
             onClick={handlePrevious}
           >
             ←
           </button>
-          <button type="button" aria-label="Next resort" onClick={handleNext}>
+          <button
+            type="button"
+            className={styles.navButton}
+            aria-label="Next resort"
+            onClick={handleNext}
+          >
             →
           </button>
         </div>
 
-        <div>
-          <p>{resort.ratingText}</p>
-          <div>{'★'.repeat(resort.stars)}</div>
-        </div>
-
-        <div>
-          <p>{resort.subtitle}</p>
-          <p>{resort.description}</p>
-        </div>
-
-        <div>
-          <h4># of Nights</h4>
-          <button
-            type="button"
-            onClick={() => setNights(n => Math.max(1, n - 1))}
-          >
-            -
-          </button>
-          <span>{nights} Nights</span>
-          <button type="button" onClick={() => setNights(n => n + 1)}>
-            +
-          </button>
-        </div>
-
-        <div>
-          <h4># of Guests</h4>
-          <button
-            type="button"
-            onClick={() => setGuests(g => Math.max(1, g - 1))}
-          >
-            -
-          </button>
-          <span>{guests} Guests</span>
-          <button type="button" onClick={() => setGuests(g => g + 1)}>
-            +
-          </button>
-        </div>
-
-        <div>
-          <h4>Pricing</h4>
-          <p>${price.toLocaleString()} USD</p>
+        <div className={styles.contentWrapper}>
+          <ItemCard
+            subtitle={resort.subtitle}
+            description={resort.description}
+            ratingText={resort.ratingText}
+            stars={resort.stars}
+            basePrice={resort.basePrice}
+            showQuantityControls={true}
+          />
+          <div className={styles.imageWrapper}>
+            <img
+              src="https://via.placeholder.com/400x500?text=Resort+Image"
+              alt={resort.title}
+            />
+          </div>
         </div>
       </div>
     </section>
