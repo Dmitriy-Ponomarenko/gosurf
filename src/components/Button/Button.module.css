@@ -4,7 +4,6 @@
   align-items: stretch;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 32px;
   color: #ffffff;
   background: transparent;
   transition:
@@ -99,7 +98,6 @@
 
 @media (max-width: 768px) {
   .button {
-    border-radius: 24px;
   }
 
   .side {
