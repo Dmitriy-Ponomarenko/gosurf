@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styles from './Curtain.module.css';
+import '../../index.css'
 
 type Props = {
   title: string;
