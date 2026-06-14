@@ -39,9 +39,34 @@
 }
 
 .curtainsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   width: 100%;
+  position: relative;
+}
+
+.curtainsGrid > div {
+  flex: 1;
+  margin-left: -40px;
+  cursor: pointer;
+}
+
+.curtainsGrid > div:first-child {
+  margin-left: 0;
+  margin-top: 32px;
+  z-index: 1;
+}
+
+.curtainsGrid > div:nth-child(2) {
+  z-index: 2;
+}
+
+.curtainsGrid > div:nth-child(3) {
+  margin-top: 90px;
+  z-index: 3;
+}
+
+.curtainsGrid > div:nth-child(4) {
+  z-index: 4;
 }
 
 @media (max-width: 1280px) {

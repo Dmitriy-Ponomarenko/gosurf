@@ -74,14 +74,15 @@ const Curtains: React.FC = () => {
           </div>
           <div className={styles.curtainsGrid}>
             {slides.map((s, i) => (
-              <Curtain
-                key={s.id}
-                title={s.title}
-                location={s.location}
-                backgroundImage={s.bg}
-                backgroundImage2x={s.bg2x}
-                active={i === activeIndex}
-              />
+              <div key={s.id} onClick={() => setActiveIndex(i)}>
+                <Curtain
+                  title={s.title}
+                  location={s.location}
+                  backgroundImage={s.bg}
+                  backgroundImage2x={s.bg2x}
+                  active={i === activeIndex}
+                />
+              </div>
             ))}
           </div>
         </div>
