@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Curtain from '@/components/Curtain/Curtain';
 
 import styles from './Curtains.module.css';
+import '../../../index.css';
 
 const slides = [
   {
@@ -51,6 +52,7 @@ const Curtains: React.FC = () => {
   return (
     <section className={`${styles.curtainsSection} section`}>
       <div className={`${styles.curtainsContainer} container`}>
+        <h2 className="visually-hidden">Surfing spots</h2>
         <div className={styles.swiperWrap}>
           <div className={styles.navigationButtons}>
             <button

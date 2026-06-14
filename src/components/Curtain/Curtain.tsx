@@ -31,10 +31,10 @@ const Curtain: React.FC<Props> = ({
         <img className={styles.bg} src={backgroundImage} alt="" aria-hidden />
       )}
 
-      <div className={styles.title}>{title}</div>
+      <h3 className={styles.title}>{title}</h3>
 
       <div className={styles.leftLabel} aria-hidden>
-        <span>{location}</span>
+        <p>{location}</p>
       </div>
 
       {active && (
