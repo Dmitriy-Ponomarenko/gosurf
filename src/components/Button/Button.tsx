@@ -1,39 +1,48 @@
 import React from 'react';
-import type { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import styles from './Button.module.css';
-
-type ButtonVariant = 'default' | 'ghost' | 'primary' | 'outline';
+import '../../index.css';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: React.ReactNode;
-  secondary?: React.ReactNode;
-  variant?: ButtonVariant;
+  left: ReactNode;
+  right: ReactNode;
+  showArrow?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
-  children,
+  left,
+  right,
+  showArrow = true,
   className = '',
-  secondary,
   type = 'button',
-  variant = 'default',
   ...props
 }) => {
-  const variantClass = variant === 'default' ? '' : styles[variant];
-
   return (
     <button
       type={type}
-      className={`${styles.button} ${variantClass} ${className}`.trim()}
+      className={`${styles.button} ${className}`.trim()}
       {...props}
     >
-      <span className={`${styles.side} ${styles.left}`}>{children}</span>
-      {secondary !== undefined && secondary !== null ? (
-        <>
-          <span className={styles.divider} />
-          <span className={`${styles.side} ${styles.right}`}>{secondary}</span>
-        </>
-      ) : null}
+      {' '}
+      <span className={styles.background} />
+      <span className={styles.content}>
+        <span className={styles.left}>{left}</span>
+
+        <span aria-hidden="true" className={styles.divider}>
+          —
+        </span>
+
+        <span className={styles.right}>
+          {right}
+
+          {showArrow && (
+            <span aria-hidden="true" className={styles.arrow}>
+              →
+            </span>
+          )}
+        </span>
+      </span>
     </button>
   );
 };
