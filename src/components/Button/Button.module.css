@@ -1,29 +1,21 @@
 .button {
-  position: relative;
-
+  position: absolute;
   display: inline-flex;
   align-items: stretch;
-
   padding: 0;
   border: none;
-
   background: transparent;
-
   overflow: hidden;
-
   font-weight: 800;
   font-size: 2rem;
   line-height: 1;
-
   text-transform: uppercase;
-
   transition: var(--transition);
 }
 
 .content {
   position: relative;
   z-index: 2;
-
   display: flex;
   align-items: stretch;
 }
@@ -32,14 +24,12 @@
 .right {
   display: flex;
   align-items: center;
-
   padding: 1.75rem 2rem;
-
   white-space: nowrap;
-
   transition:
     color 0.4s ease,
     background-color 0.4s ease;
+  z-index: 2;
 }
 
 .left {
@@ -51,42 +41,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 0 0.75rem;
-
   color: var(--text-main);
-
   transition: color 0.4s ease;
+  position: relative;
+  z-index: 2;
 }
 
 .right {
   position: relative;
-
   gap: 1rem;
-
   background-color: var(--green);
-  color: var(--bg-color);
-
+  color: var(--text-main);
   overflow: hidden;
 }
 
 .arrow {
   display: flex;
   align-items: center;
-
   transition: transform 0.4s ease;
-}
-
-/* ===== HOVER ===== */
-
-.button:hover .left,
-.button:focus-visible .left {
-  color: var(--bg-color);
-}
-
-.button:hover .divider,
-.button:focus-visible .divider {
-  color: var(--bg-color);
 }
 
 .button:hover .right,
@@ -99,23 +72,15 @@
   transform: translateX(6px);
 }
 
-/* ===== АНИМИРУЕМЫЙ ФОН ===== */
-
 .button::before {
   content: '';
-
   position: absolute;
-
   top: 0;
   right: 0;
   bottom: 0;
-
-  width: calc(100% - 40%);
-
+  width: calc(100% - 38%);
   background-color: var(--green);
-
   z-index: 1;
-
   transition:
     width 0.45s ease,
     left 0.45s ease;
@@ -125,8 +90,6 @@
 .button:focus-visible::before {
   width: 100%;
 }
-
-/* ===== ACTIVE ===== */
 
 .button:active {
   transform: translateY(1px);

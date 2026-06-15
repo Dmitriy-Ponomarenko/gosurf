@@ -1,7 +1,9 @@
 import React from 'react';
 
+import Button from '../Button/Button';
+
 import styles from './Curtain.module.css';
-import '../../index.css'
+import '../../index.css';
 
 type Props = {
   title: string;
@@ -39,13 +41,12 @@ const Curtain: React.FC<Props> = ({
       </div>
 
       {active && (
-        <button
-          type="button"
-          className={styles.viewButton}
-          aria-label="View - Surf"
-        >
-          View - Surf →
-        </button>
+        <Button
+          variant="arrows"
+          leftText="View"
+          rightText="Surf"
+          className={styles.curtainButton}
+        />
       )}
 
       {!active && <div className={styles.mask} />}

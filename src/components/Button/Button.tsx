@@ -1,48 +1,44 @@
 import React from 'react';
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes } from 'react';
 
 import styles from './Button.module.css';
 import '../../index.css';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  left: ReactNode;
-  right: ReactNode;
-  showArrow?: boolean;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  leftText: string;
+  rightText?: string | null;
+  variant?: 'arrows' | 'simple';
 }
 
 const Button: React.FC<ButtonProps> = ({
-  left,
-  right,
-  showArrow = true,
+  leftText,
+  rightText,
+  variant = 'simple',
   className = '',
-  type = 'button',
   ...props
 }) => {
+  const isComplex = variant === 'arrows';
+
+  const hasRightText =
+    rightText !== undefined && rightText !== null && rightText.trim() !== '';
+
   return (
     <button
-      type={type}
-      className={`${styles.button} ${className}`.trim()}
+      type="button"
+      className={`${styles.button} ${isComplex ? styles.complex : ''} ${className}`.trim()}
       {...props}
     >
-      {' '}
-      <span className={styles.background} />
-      <span className={styles.content}>
-        <span className={styles.left}>{left}</span>
+      <span className={styles.left}>{leftText}</span>
 
-        <span aria-hidden="true" className={styles.divider}>
-          —
-        </span>
-
-        <span className={styles.right}>
-          {right}
-
-          {showArrow && (
-            <span aria-hidden="true" className={styles.arrow}>
-              →
-            </span>
-          )}
-        </span>
-      </span>
+      {isComplex && hasRightText && (
+        <>
+          <span className={styles.divider}>—</span>
+          <span className={styles.right}>
+            {rightText}
+            <span className={styles.arrow}>→</span>
+          </span>
+        </>
+      )}
     </button>
   );
 };

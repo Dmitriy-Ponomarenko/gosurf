@@ -172,7 +172,7 @@ const BookFlightSection: React.FC = () => {
         </div>
 
         <div className={styles.buttonWrapper}>
-          <Button secondary="FLIGHT →">BOOK -</Button>
+          <Button variant="arrows" leftText="Book" rightText="Flight" />
         </div>
       </div>
     </section>

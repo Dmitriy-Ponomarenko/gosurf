@@ -52,30 +52,10 @@
   font-size: 18px;
 }
 
-.viewButton {
+.curtainButton {
   position: absolute;
   left: 40px;
-  bottom: 0px;
   z-index: 4;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 80px;
-  padding: 12px 20px;
-  border: none;
-  background: rgba(74, 246, 205, 0.95);
-  color: var(--text-main);
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.viewButton:hover {
-  background: rgba(74, 246, 205, 1);
-  transform: translateY(-2px);
 }
 
 .mask {

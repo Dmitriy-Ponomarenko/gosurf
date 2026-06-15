@@ -7,6 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import Button from '@/components/Button/Button';
+
 import ItemCard from '../ItemCard/ItemCard';
 
 import styles from './ResortsSection.module.css';
@@ -158,6 +160,7 @@ const ResortsSection: React.FC = () => {
             />
           </div>
         </div>
+        <Button variant="arrows" leftText="Book" rightText="Stay" />
       </div>
     </section>
   );
