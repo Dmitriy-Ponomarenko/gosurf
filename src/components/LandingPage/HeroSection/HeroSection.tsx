@@ -100,9 +100,7 @@ const HeroSection: React.FC = () => {
 
   return (
     <section className={styles.heroSection}>
-      <header className={styles.heroHeader}>
-        <Sidebar />
-      </header>
+      <header className={styles.heroHeader}>{/* <Sidebar /> */}</header>
     </section>
   );
 };
