@@ -1,10 +1,14 @@
 // src/components/LandingPage/HeroSection/HeroSection.tsx
 
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
+import type { Swiper as SwiperType } from 'swiper';
+import { EffectFade, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
 
-import Sidebar from '@/components/LandingPage/Sidebar/Sidebar';
+// Импорт стилей swiper (обязательно для работы)
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/navigation';
 
 import styles from './HeroSection.module.css';
 
@@ -83,24 +87,69 @@ const resorts: Resort[] = [
   },
 ];
 
-const initialResort = resorts[0] as Resort;
-
 const HeroSection: React.FC = () => {
-  const [activeResort, setActiveResort] = useState<Resort>(() => initialResort);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const mapContent = useMemo(
-    () => ({
-      title: activeResort.region,
-      location: activeResort.location,
-      condition: activeResort.condition,
-      date: activeResort.date,
-    }),
-    [activeResort]
-  );
+  const handleSlideChange = (swiper: SwiperType) => {
+    setActiveIndex(swiper.activeIndex);
+  };
+
+  const handleNavClick = (index: number) => {
+    if (swiperInstance) {
+      swiperInstance.slideTo(index);
+    }
+  };
+
+  const activeResort = resorts[activeIndex] as Resort;
 
   return (
     <section className={styles.heroSection}>
-      <header className={styles.heroHeader}>{/* <Sidebar /> */}</header>
+      <Swiper
+        modules={[EffectFade, Navigation]}
+        effect="fade"
+        onSwiper={setSwiperInstance}
+        onSlideChange={handleSlideChange}
+        className={styles.swiperContainer}
+      >
+        {resorts.map(resort => (
+          <SwiperSlide key={resort.id}>
+            <div
+              className={styles.slideBg}
+              style={{ backgroundImage: `url(${resort.backgroundImage})` }}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* Контент поверх свайпера */}
+      <div className={styles.contentOverlay}>
+        <div className="container">
+          <h2 className={styles.regionTitle}>{activeResort.region}</h2>
+          <div className={styles.conditionBox}>
+            <span>Condition</span>
+            <p className={styles.conditionValue}>{activeResort.condition}</p>
+          </div>
+        </div>
+
+        {/* Нижняя навигация */}
+        <div className={styles.navigationPanel}>
+          <div className="container">
+            <div className={styles.navWrapper}>
+              {resorts.map((resort, index) => (
+                <button
+                  key={resort.id}
+                  className={`${styles.navItem} ${activeIndex === index ? styles.active : ''}`}
+                  onClick={() => handleNavClick(index)}
+                >
+                  <span className={styles.navIndex}>0{index + 1}</span>
+                  <span className={styles.navLabel}>{resort.title}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
