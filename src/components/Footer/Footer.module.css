@@ -1,0 +1,35 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 90px;
+  padding-bottom: 12px;
+  gap: 16px;
+}
+
+.footerButton {
+}
+
+.footerText {
+}
+
+@media screen and (min-width: 768px) {
+  .footer {
+    padding-top: 120px;
+    padding-bottom: 16px;
+    gap: 24px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .footer {
+    padding-top: 142px;
+    padding-bottom: 32px;
+    gap: 27px;
+  }
+
+  .footerButton {
+    max-width: 172px;
+  }
+}

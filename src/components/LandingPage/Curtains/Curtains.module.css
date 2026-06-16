@@ -1,0 +1,84 @@
+.curtainsSection {
+  width: 100%;
+  padding: 48px 0;
+  color: var(--text-main);
+}
+
+.curtainsContainer {
+  max-width: none;
+  width: 100%;
+  padding: 0;
+}
+
+.swiperWrap {
+  position: relative;
+  overflow: visible;
+}
+
+.navigationButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.navButton:hover {
+}
+
+.curtainsGrid {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.curtainsGrid > div {
+  flex: 1;
+  margin-left: -40px;
+  cursor: pointer;
+}
+
+.curtainsGrid > div:first-child {
+  margin-left: 0;
+  margin-top: 32px;
+  z-index: 1;
+}
+
+.curtainsGrid > div:nth-child(2) {
+  z-index: 2;
+}
+
+.curtainsGrid > div:nth-child(3) {
+  margin-top: 90px;
+  z-index: 3;
+}
+
+.curtainsGrid > div:nth-child(4) {
+  z-index: 4;
+}
+
+@media (max-width: 1280px) {
+  .curtainsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .curtainsGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
