@@ -1,6 +1,6 @@
 // src/components/LandingPage/Curtains/Curtains.tsx
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Curtain from '@/components/Curtain/Curtain';
 
@@ -41,6 +41,8 @@ const slides = [
 const Curtains: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchStartIndex = useRef<number | null>(null);
 
   useEffect(() => {
     if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches)
@@ -59,11 +61,47 @@ const Curtains: React.FC = () => {
     setActiveIndex(prev => (prev === slides.length - 1 ? 0 : prev + 1));
   };
 
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = event.changedTouches[0]?.clientX ?? null;
+    setPaused(true);
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    const startX = touchStartX.current;
+    const endX = event.changedTouches[0]?.clientX;
+    const startIndex = touchStartIndex.current;
+    touchStartX.current = null;
+    touchStartIndex.current = null;
+
+    if (startX !== null && endX !== undefined) {
+      if (Math.abs(endX - startX) > 40) {
+        setActiveIndex(current =>
+          endX < startX
+            ? (current + 1) % slides.length
+            : (current + slides.length - 1) % slides.length
+        );
+      } else if (startIndex !== null) {
+        setActiveIndex(startIndex);
+      }
+    }
+
+    setPaused(false);
+  };
+
   return (
     <section className={`${styles.curtainsSection} section`}>
       <div className={`${styles.curtainsContainer} container`}>
         <h2 className="visually-hidden">Surfing spots</h2>
-        <div className={styles.swiperWrap}>
+        <div
+          className={styles.swiperWrap}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocusCapture={() => setPaused(true)}
+          onBlurCapture={event => {
+            if (!event.currentTarget.contains(event.relatedTarget))
+              setPaused(false);
+          }}
+        >
           <div className={styles.navigationButtons}>
             <button
               type="button"
@@ -85,12 +123,11 @@ const Curtains: React.FC = () => {
           <div
             className={styles.curtainsGrid}
             data-active-index={activeIndex}
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
-            onFocusCapture={() => setPaused(true)}
-            onBlurCapture={event => {
-              if (!event.currentTarget.contains(event.relatedTarget))
-                setPaused(false);
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={() => {
+              touchStartX.current = null;
+              setPaused(false);
             }}
           >
             <div
@@ -111,7 +148,9 @@ const Curtains: React.FC = () => {
                   aria-label={`${s.title}, ${s.location}`}
                   onMouseEnter={() => setActiveIndex(i)}
                   onFocus={() => setActiveIndex(i)}
-                  onClick={() => setActiveIndex(i)}
+                  onTouchStart={() => {
+                    touchStartIndex.current = i;
+                  }}
                 >
                   <Curtain
                     title={s.title}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FiArrowRight, FiDroplet, FiWind } from 'react-icons/fi';
 import { GiWaves } from 'react-icons/gi';
 
@@ -65,9 +65,48 @@ const spots = [
 
 export default function LocationSection() {
   const [selected, setSelected] = useState(4);
+  const [cardVisible, setCardVisible] = useState(true);
+  const dismissTimer = useRef<number | null>(null);
   const spot = spots[selected] ?? spots[0];
   const spotX = ((spot.longitude + 180) / 360) * 100;
   const spotY = ((85 - spot.latitude) / 145) * 100;
+
+  useEffect(() => {
+    dismissTimer.current = window.setTimeout(() => {
+      setCardVisible(false);
+      dismissTimer.current = null;
+    }, 5000);
+
+    return () => {
+      if (dismissTimer.current !== null)
+        window.clearTimeout(dismissTimer.current);
+    };
+  }, []);
+
+  const cancelDismiss = () => {
+    if (dismissTimer.current !== null) {
+      window.clearTimeout(dismissTimer.current);
+      dismissTimer.current = null;
+    }
+  };
+
+  const revealCard = () => {
+    cancelDismiss();
+    setCardVisible(true);
+  };
+
+  const selectSpot = (index: number) => {
+    setSelected(index);
+    revealCard();
+  };
+
+  const scheduleDismiss = () => {
+    cancelDismiss();
+    dismissTimer.current = window.setTimeout(() => {
+      setCardVisible(false);
+      dismissTimer.current = null;
+    }, 5000);
+  };
 
   return (
     <section id="surf-section" className={styles.section}>
@@ -78,7 +117,7 @@ export default function LocationSection() {
           California <span>|</span> USA
         </h3>
       </div>
-      <div className={styles.map}>
+      <div className={`${styles.map} ${cardVisible ? styles.mapHasCard : ''}`}>
         <div className={styles.mapCanvas}>
           <img src="/images/world-map.svg" alt="" aria-hidden="true" />
           {spots.map((item, index) => (
@@ -90,21 +129,33 @@ export default function LocationSection() {
                 left: `${((item.longitude + 180) / 360) * 100}%`,
                 top: `${((85 - item.latitude) / 145) * 100}%`,
               }}
-              onClick={() => setSelected(index)}
-              onMouseEnter={() => setSelected(index)}
-              onFocus={() => setSelected(index)}
+              onClick={() => {
+                setSelected(index);
+                setCardVisible(true);
+              }}
+              onMouseEnter={() => selectSpot(index)}
+              onMouseLeave={scheduleDismiss}
+              onFocus={() => selectSpot(index)}
+              onBlur={scheduleDismiss}
+              onTouchStart={() => selectSpot(index)}
+              onTouchEnd={scheduleDismiss}
               aria-label={`Show ${item.name}`}
               aria-pressed={selected === index}
             />
           ))}
           <div
-            className={styles.card}
+            className={`${styles.card} ${cardVisible ? styles.cardVisible : ''}`}
             style={{
               left: `${spotX}%`,
               top: `${spotY}%`,
               transform: `translate(${spotX > 55 ? 'calc(-100% - 16px)' : '16px'}, -50%)`,
             }}
             aria-live="polite"
+            aria-hidden={!cardVisible}
+            onMouseEnter={revealCard}
+            onMouseLeave={scheduleDismiss}
+            onTouchStart={revealCard}
+            onTouchEnd={scheduleDismiss}
           >
             <strong>{spot.name}</strong>
             <FiArrowRight aria-hidden="true" />

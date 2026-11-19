@@ -1,6 +1,7 @@
 // src/components/LandingPage/HeroSection/HeroSection.tsx
 
 import React, { useEffect, useState } from 'react';
+import { FiChevronsDown } from 'react-icons/fi';
 import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, EffectFade, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -27,6 +28,24 @@ type Resort = {
 };
 
 const routeStart = { label: 'Route start', x: 76, y: 16 };
+const roadStops = [
+  { x: 175, y: 108 },
+  { x: 280, y: 150 },
+  { x: 340, y: 248 },
+  { x: 455, y: 276 },
+  { x: 560, y: 304 },
+  { x: 645, y: 340 },
+  { x: 850, y: 455 },
+];
+
+const getRoutePath = (destination: { x: number; y: number }) => {
+  const startX = routeStart.x * 10.01;
+  const startY = routeStart.y * 4.96;
+  const endX = destination.x * 10.01;
+  const endY = destination.y * 4.96;
+
+  return `M ${startX} ${startY} C 790 105, 870 120, 820 165 C 780 200, 770 215, 800 240 C 830 265, 845 285, 790 300 C 735 315, 700 300, 660 300 C 610 300, ${endX + 80} ${endY - 40}, ${endX} ${endY}`;
+};
 
 const resorts: Resort[] = [
   {
@@ -39,7 +58,11 @@ const resorts: Resort[] = [
     date: '20 | 06 | 2018',
     region: 'North Shore',
     backgroundImage: '/images/north-shore.jpg',
-    mapDestination: { label: 'North Shore - Oahu, HI', x: 50, y: 60 },
+    mapDestination: {
+      label: 'North Shore - Oahu, HI',
+      x: 560 / 10.01,
+      y: 304 / 4.96,
+    },
   },
   {
     id: 'south-shore',
@@ -51,7 +74,7 @@ const resorts: Resort[] = [
     date: '14 | 08 | 2019',
     region: 'South Shore',
     backgroundImage: '/images/south-shore.jpg',
-    mapDestination: { label: 'South Shore - Maui, HI', x: 40, y: 65 },
+    mapDestination: { label: 'South Shore - Maui, HI', x: 34, y: 50 },
   },
   {
     id: 'east-shore',
@@ -63,7 +86,11 @@ const resorts: Resort[] = [
     date: '02 | 11 | 2020',
     region: 'East Shore',
     backgroundImage: '/images/east-shore.jpg',
-    mapDestination: { label: 'East Shore - Bali, ID', x: 45, y: 70 },
+    mapDestination: {
+      label: 'East Shore - Bali, ID',
+      x: 645 / 10.01,
+      y: 340 / 4.96,
+    },
   },
   {
     id: 'west-shore',
@@ -75,7 +102,11 @@ const resorts: Resort[] = [
     date: '11 | 09 | 2021',
     region: 'West Shore',
     backgroundImage: '/images/west-shore.jpg',
-    mapDestination: { label: 'West Shore - Malibu, CA', x: 55, y: 55 },
+    mapDestination: {
+      label: 'West Shore - Malibu, CA',
+      x: 455 / 10.01,
+      y: 276 / 4.96,
+    },
   },
 ];
 
@@ -97,6 +128,12 @@ const HeroSection: React.FC = () => {
     if (swiperInstance) {
       swiperInstance.slideTo(index);
     }
+  };
+
+  const handleScrollToLocations = () => {
+    document.getElementById('surf-section')?.scrollIntoView({
+      behavior: 'smooth',
+    });
   };
 
   const activeResort = resorts[activeIndex] as Resort;
@@ -130,7 +167,11 @@ const HeroSection: React.FC = () => {
       </Swiper>
 
       <div className={`${styles.heroContainer} container`}>
-        <Header location={activeResort.location} />
+        <Header
+          location={activeResort.location}
+          date={activeResort.date}
+          currentTime={currentTime}
+        />
 
         <div className={styles.contentOverlay}>
           <div className={styles.rightTop}>
@@ -147,8 +188,17 @@ const HeroSection: React.FC = () => {
                   strokeOpacity=".35"
                   strokeWidth="2"
                 />
+                {roadStops.map(stop => (
+                  <circle
+                    key={`${stop.x}-${stop.y}`}
+                    className={styles.roadStop}
+                    cx={stop.x}
+                    cy={stop.y}
+                    r="3.5"
+                  />
+                ))}
                 <path
-                  d={`M ${routeStart.x * 10.01} ${routeStart.y * 4.96} C ${routeStart.x * 10.01 - 60} ${routeStart.y * 4.96 + 110}, ${activeResort.mapDestination.x * 10.01 + 80} ${activeResort.mapDestination.y * 4.96 - 90}, ${activeResort.mapDestination.x * 10.01} ${activeResort.mapDestination.y * 4.96}`}
+                  d={getRoutePath(activeResort.mapDestination)}
                   fill="none"
                   stroke="#dedede"
                   strokeOpacity=".85"
@@ -165,37 +215,29 @@ const HeroSection: React.FC = () => {
                 </div>
               ))}
             </div>
-            <time
-              className={styles.clock}
-              dateTime={currentTime.toISOString()}
-              aria-label={`Your local time: ${currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
-            >
-              {currentTime.toLocaleTimeString([], {
-                hour: '2-digit',
-                minute: '2-digit',
-              })}
-            </time>
-            <div className={styles.heroArrows}>
-              <button
-                type="button"
-                aria-label="Previous shore"
-                onClick={() =>
-                  handleNavClick(
-                    (activeIndex + resorts.length - 1) % resorts.length
-                  )
-                }
-              >
-                ←
-              </button>
-              <button
-                type="button"
-                aria-label="Next shore"
-                onClick={() =>
-                  handleNavClick((activeIndex + 1) % resorts.length)
-                }
-              >
-                →
-              </button>
+            <div className={styles.mapControls}>
+              <div className={styles.heroArrows}>
+                <button
+                  type="button"
+                  aria-label="Previous shore"
+                  onClick={() =>
+                    handleNavClick(
+                      (activeIndex + resorts.length - 1) % resorts.length
+                    )
+                  }
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  aria-label="Next shore"
+                  onClick={() =>
+                    handleNavClick((activeIndex + 1) % resorts.length)
+                  }
+                >
+                  →
+                </button>
+              </div>
             </div>
           </div>
 
@@ -231,6 +273,14 @@ const HeroSection: React.FC = () => {
                     ))}
                   </div>
                 </div>
+                <button
+                  type="button"
+                  className={styles.scrollCue}
+                  aria-label="Explore surf destinations"
+                  onClick={handleScrollToLocations}
+                >
+                  <FiChevronsDown aria-hidden="true" />
+                </button>
               </div>
             </div>
           </div>

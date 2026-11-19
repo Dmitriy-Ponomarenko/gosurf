@@ -21,7 +21,11 @@
   position: relative;
   width: min(100%, 1200px);
   margin: 20px auto 0;
-  padding: 0 16px 230px;
+  padding: 0 16px;
+  transition: padding-bottom 0.35s ease;
+}
+.mapHasCard {
+  padding-bottom: 80px;
 }
 .mapCanvas {
   position: relative;
@@ -64,6 +68,31 @@
   background: rgba(14, 17, 17, 0.98);
   box-shadow: 0 12px 35px #0005;
   pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  scale: 0.96;
+  filter: blur(2px);
+  transition:
+    opacity 0.3s ease,
+    visibility 0s linear 0.3s,
+    scale 0.3s ease,
+    filter 0.3s ease,
+    left 0.35s ease,
+    top 0.35s ease;
+}
+.cardVisible {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  scale: 1;
+  filter: blur(0);
+  transition:
+    opacity 0.3s ease,
+    visibility 0s,
+    scale 0.3s ease,
+    filter 0.3s ease,
+    left 0.35s ease,
+    top 0.35s ease;
 }
 .card > strong {
   display: inline-block;
@@ -111,5 +140,11 @@
 @media (min-width: 768px) {
   .map {
     padding: 0 32px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map,
+  .card {
+    transition: none;
   }
 }

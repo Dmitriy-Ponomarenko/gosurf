@@ -1,10 +1,19 @@
 import React from 'react';
+import { FiMapPin, FiSearch } from 'react-icons/fi';
 
 import styles from './Header.module.css';
 import NavigationIcon from './NavigationIcon';
 
-
-const Header: React.FC<{ location: string }> = ({ location }) => {
+const Header: React.FC<{
+  location: string;
+  date: string;
+  currentTime: Date;
+}> = ({ location, date, currentTime }) => {
+  const [day, month, year] = date.split('|').map(part => part.trim());
+  const localTime = currentTime.toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
   const navItems = [
     { id: 'surf', label: 'Surf', sectionId: 'surf-section' },
     {
@@ -52,9 +61,26 @@ const Header: React.FC<{ location: string }> = ({ location }) => {
           </button>
         ))}
       </div>
-      <div className={styles.sidebarLocation}>
-        <span aria-hidden="true">⌖</span> {location}
+      <div className={styles.sidebarMeta}>
+        <div className={styles.sidebarDate}>
+          <FiSearch aria-hidden="true" />
+          <strong>{day}</strong>
+          <time dateTime={`${year}-${month}-${day}`}>
+            {month} | {year}
+          </time>
+        </div>
       </div>
+      <div className={styles.sidebarLocation}>
+        <FiMapPin aria-hidden="true" />
+        <span>{location}</span>
+      </div>
+      <time
+        className={styles.sidebarClock}
+        dateTime={currentTime.toISOString()}
+        aria-label={`Your local time: ${localTime}`}
+      >
+        {localTime}
+      </time>
     </nav>
   );
 };

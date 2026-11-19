@@ -94,6 +94,58 @@
   text-transform: none;
   text-align: center;
 }
+.bookingAction {
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+}
+.bookingButton {
+  display: inline-flex;
+  align-items: stretch;
+  min-height: 56px;
+  padding: 0;
+  color: white;
+  font-size: clamp(20px, 5vw, 36px);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.bookingButton:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+}
+.bookingButton > span:first-child,
+.bookingDivider {
+  display: flex;
+  align-items: center;
+}
+.bookingDivider {
+  padding: 0 0.3em;
+  color: #bbb;
+}
+.bookingTarget {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.55em 0.75em;
+  background: var(--green);
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+.bookingButton:hover .bookingTarget,
+.bookingButton:focus-visible .bookingTarget {
+  background: #35d7b2;
+  transform: translateY(-2px);
+}
+.bookingArrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.bookingButton:hover .bookingArrow,
+.bookingButton:focus-visible .bookingArrow {
+  transform: translateX(5px);
+}
 @media (min-width: 768px) {
   .section {
     min-height: 930px;
@@ -149,5 +201,9 @@
 @media (prefers-reduced-motion: reduce) {
   .visual {
     animation: none;
+  }
+  .bookingTarget,
+  .bookingArrow {
+    transition: none;
   }
 }

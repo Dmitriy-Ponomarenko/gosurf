@@ -30,7 +30,9 @@ export default function FeatureSection({
   const [index, setIndex] = useState(0);
   const [nights, setNights] = useState(5);
   const [guests, setGuests] = useState(4);
+  const [bookingMessage, setBookingMessage] = useState('');
   const slide = slides[index] ?? slides[0];
+  const bookingType = stay ? 'Stay' : 'Flight';
 
   return (
     <section className={styles.section}>
@@ -126,9 +128,30 @@ export default function FeatureSection({
             </>
           )}
         </div>
-        <p className={styles.note}>
-          Destinations and prices are illustrative. Booking is not available
-          yet.
+        <div className={styles.bookingAction}>
+          <button
+            type="button"
+            className={styles.bookingButton}
+            aria-label={`Book ${bookingType.toLowerCase()}`}
+            onClick={() =>
+              setBookingMessage(`${bookingType} booking is coming soon.`)
+            }
+          >
+            <span>Book</span>
+            <span className={styles.bookingDivider} aria-hidden="true">
+              —
+            </span>
+            <span className={styles.bookingTarget}>
+              {bookingType}
+              <span className={styles.bookingArrow} aria-hidden="true">
+                →
+              </span>
+            </span>
+          </button>
+        </div>
+        <p className={styles.note} role="status" aria-live="polite">
+          {bookingMessage ||
+            'Destinations and prices are illustrative. Booking is not available yet.'}
         </p>
       </div>
     </section>

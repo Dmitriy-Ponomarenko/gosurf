@@ -55,6 +55,37 @@ describe('landing interactions', () => {
     expect(screen.getByText('California, USA')).toBeInTheDocument();
   });
 
+  it('hides the destination card after five idle seconds and keeps it open while hovered', () => {
+    vi.useFakeTimers();
+    render(<LocationSection />);
+    const card = screen.getByText('Illustrative conditions').parentElement;
+    const airlie = screen.getByRole('button', { name: 'Show Airlie Beach' });
+    if (!card) throw new Error('Destination card should be rendered');
+
+    act(() => {
+      vi.advanceTimersByTime(5000);
+    });
+    expect(card).toHaveAttribute('aria-hidden', 'true');
+
+    fireEvent.mouseEnter(airlie);
+    expect(card).toHaveAttribute('aria-hidden', 'false');
+    fireEvent.mouseLeave(airlie);
+    act(() => {
+      vi.advanceTimersByTime(4000);
+    });
+    fireEvent.mouseEnter(card);
+    act(() => {
+      vi.advanceTimersByTime(6000);
+    });
+    expect(card).toHaveAttribute('aria-hidden', 'false');
+
+    fireEvent.mouseLeave(card);
+    act(() => {
+      vi.advanceTimersByTime(5000);
+    });
+    expect(card).toHaveAttribute('aria-hidden', 'true');
+  });
+
   it('advances curtains automatically and pauses while hovered', () => {
     vi.useFakeTimers();
     vi.stubGlobal('matchMedia', () => ({ matches: false }));
@@ -101,5 +132,13 @@ describe('landing interactions', () => {
     fireEvent.click(remove);
     expect(screen.getByText('1 guest')).toBeInTheDocument();
     expect(remove).toBeDisabled();
+    fireEvent.click(screen.getByRole('button', { name: 'Book flight' }));
+    expect(
+      screen.getByText('Flight booking is coming soon.')
+    ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Book stay' }));
+    expect(
+      screen.getByText('Stay booking is coming soon.')
+    ).toBeInTheDocument();
   });
 });
