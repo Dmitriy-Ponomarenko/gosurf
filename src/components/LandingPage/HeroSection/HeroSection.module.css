@@ -1,0 +1,283 @@
+.heroSection {
+  position: relative;
+  height: 100svh;
+  min-height: 650px;
+  width: 100%;
+}
+.swiperContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.slideBg {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.slideBg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10, 15, 16, 0.22), rgba(8, 12, 13, 0.4)),
+    linear-gradient(0deg, #101414 0%, transparent 65%);
+}
+.heroSection .heroContainer {
+  position: relative;
+  isolation: isolate;
+  z-index: 10;
+  max-width: none;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: grid;
+  grid-template-columns: clamp(110px, 16vw, 210px) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  pointer-events: none;
+}
+.heroSection .heroContainer::before {
+  content: 'GO\A SURF';
+  position: absolute;
+  z-index: 0;
+  top: -0.08em;
+  left: clamp(70px, 10vw, 140px);
+  color: rgba(0, 0, 0, 0.22);
+  font-size: clamp(76px, 16vw, 250px);
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  line-height: 0.76;
+  white-space: pre;
+  pointer-events: none;
+}
+.heroContainer > * {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+.contentOverlay {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px clamp(12px, 3vw, 40px) 25px;
+  min-width: 0;
+}
+.rightTop {
+  position: relative;
+  align-self: flex-end;
+  width: 100%;
+}
+.mapContainer {
+  width: 100%;
+  position: relative;
+  aspect-ratio: 1001 / 496;
+  margin-top: 22px;
+}
+.heroMap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.8;
+}
+.roadStop {
+  fill: var(--green);
+  filter: drop-shadow(0 0 4px var(--green));
+}
+.mapPoint {
+  position: absolute;
+  z-index: 1;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 12px #4af6cd;
+}
+.mapPoint span {
+  position: absolute;
+  right: 18px;
+  top: -3px;
+  white-space: nowrap;
+  color: white;
+  font-size: 11px;
+}
+.mapControls {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.heroArrows {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 30px;
+}
+.heroArrows button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 30px;
+  padding: 0;
+  color: white;
+  font-size: 22px;
+  line-height: 1;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+.heroArrows button:hover,
+.heroArrows button:focus-visible {
+  color: var(--green);
+}
+.heroArrows button:first-child:hover {
+  transform: translateX(-2px);
+}
+.heroArrows button:last-child:hover {
+  transform: translateX(2px);
+}
+.scrollCue {
+  position: absolute;
+  z-index: 2;
+  left: clamp(160px, calc(16vw + 40px), 250px);
+  bottom: clamp(48px, 13vh, 118px);
+  color: white;
+  font-size: 38px;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+.scrollCue:hover,
+.scrollCue:focus-visible {
+  color: var(--green);
+  transform: translateY(4px);
+}
+.rightBottom {
+  width: 100%;
+  align-self: flex-end;
+}
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  text-align: right;
+}
+.eyebrow,
+.conditionBox span {
+  color: #aaa;
+  font-size: 14px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+}
+.eyebrow::before,
+.conditionBox span::before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 60px;
+  height: 1px;
+  margin-right: 20px;
+  background: #777;
+}
+.regionTitle {
+  font-size: clamp(28px, 8vw, 52px);
+  font-weight: 900;
+  line-height: 1;
+}
+.conditionBox {
+  margin-top: 20px;
+}
+.conditionValue {
+  color: white;
+  margin-top: 12px;
+  font-size: clamp(22px, 2.5vw, 36px);
+  font-weight: 800;
+}
+.navigationPanel {
+  width: min(100%, 800px);
+  margin-top: 25px;
+}
+.navWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.navItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  border-top: 3px solid white;
+  padding: 8px 0;
+  text-align: left;
+}
+.navItem.active {
+  border-color: var(--green);
+}
+.navIndex {
+  font-weight: 800;
+}
+.navLabel {
+  font-size: 10px;
+  color: #bbb;
+  white-space: nowrap;
+}
+@media (min-width: 768px) {
+  .contentOverlay {
+    padding: 30px 5% 30px 6%;
+  }
+  .rightTop {
+    width: min(650px, 70%);
+  }
+  .regionTitle {
+    font-size: clamp(42px, 5.5vw, 80px);
+  }
+  .navigationPanel {
+    margin-top: 40px;
+  }
+  .navWrapper {
+    gap: 24px;
+  }
+  .navItem {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .navLabel {
+    font-size: 12px;
+  }
+}
+@media (min-width: 1024px) {
+  .navLabel {
+    font-size: 12px;
+  }
+}
+@media (max-width: 767px) {
+  .heroSection .heroContainer::before {
+    left: 80px;
+    font-size: clamp(76px, 22vw, 128px);
+  }
+  .navLabel {
+    display: none;
+  }
+  .scrollCue {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .heroSection .heroContainer {
+    grid-template-columns: 78px minmax(0, 1fr);
+  }
+  .heroSection .heroContainer::before {
+    left: 56px;
+    color: rgba(0, 0, 0, 0.14);
+  }
+}

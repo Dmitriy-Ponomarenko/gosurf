@@ -7,6 +7,18 @@ import { defineConfig } from 'vite';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), cloudflare()],
+  server: {
+    host: true,
+    port: 5173,
+    strictPort: false,
+    hmr: {
+      protocol: 'ws',
+      host: 'localhost',
+    },
+    watch: {
+      usePolling: true,
+    },
+  },
   resolve: {
     alias: {
       '@/workers': path.resolve(__dirname, './workers'),

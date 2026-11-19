@@ -1,0 +1,72 @@
+.heading {
+  position: relative;
+  padding: 48px 0 70px;
+  margin-left: max(8%, calc((100% - 1200px) / 2));
+}
+.heading > span {
+  position: absolute;
+  left: -100px;
+  top: 26px;
+  font-size: clamp(90px, 13vw, 190px);
+  line-height: 1;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.025);
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.heading h2 {
+  position: relative;
+  display: inline-block;
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 900;
+  line-height: 1;
+}
+.heading h2::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -10px;
+  height: 1px;
+  width: 70px;
+  background: var(--green);
+}
+.arrows {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.arrows button {
+  padding: 4px;
+  color: #777;
+  font-size: 30px;
+  line-height: 1;
+}
+.arrows button:hover,
+.arrows button:focus-visible {
+  color: var(--green);
+}
+.label {
+  display: block;
+  color: #a0a3a3;
+  font-size: 14px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+}
+.label::after {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 60px;
+  height: 1px;
+  margin-left: 18px;
+  background: #777;
+}
+@media (max-width: 700px) {
+  .heading {
+    padding: 40px 0 40px;
+    margin-left: 24px;
+  }
+  .heading > span {
+    left: -35px;
+  }
+}

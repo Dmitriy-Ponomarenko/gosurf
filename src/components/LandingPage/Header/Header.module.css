@@ -1,0 +1,147 @@
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  min-width: 0;
+  height: 100%;
+  border-right: 1px solid #ffffff20;
+  background: linear-gradient(180deg, #10141455, #101414a8);
+}
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0;
+  font-size: clamp(26px, 4vw, 54px);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.logo strong {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: clamp(100px, 17vw, 225px);
+  padding: 0;
+  background: var(--green);
+}
+.logo strong span,
+.logoGo {
+  font-size: inherit;
+  transform: rotate(-90deg);
+}
+.logoGo {
+  display: grid;
+  place-items: center;
+  height: clamp(56px, 8vw, 100px);
+  padding: 0;
+}
+.navContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(6px, 1.6vh, 16px);
+  padding: 8px 0;
+}
+.navButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 44px;
+  gap: 2px;
+  padding: 2px;
+  color: white;
+}
+.navButton:hover,
+.navButton:focus-visible {
+  color: var(--green);
+}
+.icon {
+  width: clamp(30px, 3.8vw, 48px);
+  height: clamp(28px, 3vw, 38px);
+}
+.label {
+  font-size: clamp(8px, 0.8vw, 10px);
+  letter-spacing: 0.15em;
+  text-transform: capitalize;
+}
+.sidebarMeta {
+  margin-top: auto;
+  padding: 8px 0;
+}
+.sidebarDate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: white;
+  text-align: center;
+}
+.sidebarDate > svg {
+  display: block;
+  align-self: center;
+  width: 20px;
+  height: 20px;
+  margin-bottom: 6px;
+  stroke-width: 1.75;
+}
+.sidebarDate strong {
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1;
+}
+.sidebarDate time {
+  color: #b6baba;
+  font-size: clamp(9px, 0.9vw, 13px);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+.sidebarLocation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 4px 6px 16px;
+  color: #d3d8d7;
+  text-align: center;
+  font-size: clamp(8px, 0.8vw, 11px);
+  line-height: 1.4;
+}
+.sidebarLocation > svg {
+  flex: 0 0 13px;
+  width: 13px;
+  height: 13px;
+  color: var(--green);
+}
+.sidebarClock {
+  display: block;
+  padding: 2px 0 16px;
+  color: #d3d8d7;
+  text-align: center;
+  font-size: clamp(10px, 1vw, 13px);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+@media (min-width: 768px) {
+  .navContainer {
+    gap: 16px;
+  }
+  .navButton {
+    min-height: 58px;
+    gap: 4px;
+  }
+  .sidebarDate {
+    gap: 5px;
+  }
+  .sidebarLocation {
+    padding-bottom: 26px;
+  }
+  .sidebarClock {
+    padding-bottom: 26px;
+  }
+}

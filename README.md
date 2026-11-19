@@ -1,5 +1,17 @@
 # React + TypeScript + Vite
 
+## Landing page
+
+Run `npm run fdev` to preview the landing page. The shore and destination
+sliders, surf map, curtains, stay counters, and board details are interactive.
+The dotted world map uses public-domain [Natural Earth](https://www.naturalearthdata.com/) land data.
+Surf conditions are illustrative, not geolocation or live surf data. Travel, resort,
+and shop prices and ratings are examples; booking and purchases are not connected.
+
+The reference design still needs licensed destination/resort photography,
+surfboard and accessory images, and the decorative hammock, flowers, and drink
+artwork. Existing beach images and a board illustration are used in their place.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

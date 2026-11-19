@@ -1,0 +1,209 @@
+.section {
+  position: relative;
+  overflow: hidden;
+}
+.visual {
+  position: absolute;
+  top: 130px;
+  left: 0;
+  width: 100%;
+  height: 370px;
+  background-size: cover;
+  background-position: center;
+  animation: slide-in 0.5s ease both;
+}
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.container {
+  position: relative;
+  width: min(1200px, 100%);
+  margin: auto;
+  padding: 0 24px 65px;
+}
+.intro {
+  min-height: 300px;
+  text-align: right;
+}
+.intro h3,
+.detail h3 {
+  margin: 15px 0;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  line-height: 1.1;
+}
+.detail {
+  min-height: 100px;
+}
+.stars {
+  color: var(--green);
+  font-size: 24px;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+.plane {
+  position: absolute;
+  top: 205px;
+  right: 0;
+  width: 45%;
+  pointer-events: none;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px 15px;
+  padding-top: 40px;
+}
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.fact > span {
+  color: #a0a3a3;
+  font-size: 10px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+}
+.fact strong {
+  font-size: clamp(15px, 4.7vw, 19px);
+  text-transform: uppercase;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.counter {
+  color: var(--green);
+  text-align: left;
+}
+.counter button {
+  font-size: 23px;
+  padding: 0 5px;
+}
+.note {
+  margin-top: 35px;
+  color: #9da2a1;
+  font-size: 12px;
+  text-transform: none;
+  text-align: center;
+}
+.bookingAction {
+  display: flex;
+  justify-content: center;
+  margin-top: 34px;
+}
+.bookingButton {
+  display: inline-flex;
+  align-items: stretch;
+  min-height: 56px;
+  padding: 0;
+  color: white;
+  font-size: clamp(20px, 5vw, 36px);
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.bookingButton:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+}
+.bookingButton > span:first-child,
+.bookingDivider {
+  display: flex;
+  align-items: center;
+}
+.bookingDivider {
+  padding: 0 0.3em;
+  color: #bbb;
+}
+.bookingTarget {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  padding: 0.55em 0.75em;
+  background: var(--green);
+  transition:
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+.bookingButton:hover .bookingTarget,
+.bookingButton:focus-visible .bookingTarget {
+  background: #35d7b2;
+  transform: translateY(-2px);
+}
+.bookingArrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+.bookingButton:hover .bookingArrow,
+.bookingButton:focus-visible .bookingArrow {
+  transform: translateX(5px);
+}
+@media (min-width: 768px) {
+  .section {
+    min-height: 930px;
+  }
+  .visual {
+    top: 170px;
+    width: 75%;
+    height: 560px;
+  }
+  .container {
+    padding: 0 6% 80px;
+  }
+  .intro {
+    min-height: 415px;
+  }
+  .detail {
+    min-height: 150px;
+  }
+  .plane {
+    top: 300px;
+    right: -12%;
+    width: min(55%, 620px);
+  }
+  .facts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 25px;
+  }
+  .fact {
+    display: block;
+    position: relative;
+    min-height: 160px;
+    padding-left: 38px;
+  }
+  .fact strong {
+    font-size: clamp(19px, 2.2vw, 29px);
+  }
+  .fact > span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 12px;
+  }
+  .counter {
+    margin-top: 8px;
+    text-align: right;
+  }
+  .note {
+    margin-top: 55px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .visual {
+    animation: none;
+  }
+  .bookingTarget,
+  .bookingArrow {
+    transition: none;
+  }
+}

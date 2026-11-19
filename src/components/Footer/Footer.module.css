@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 100px 20px 35px;
+}
+.footerButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 26px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.footerButton span {
+  padding: 16px;
+  background: var(--green);
+  font-size: inherit;
+}
+.footerText {
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-align: center;
+}

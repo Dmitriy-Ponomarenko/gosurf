@@ -1,0 +1,325 @@
+.page {
+  padding: 3rem 2rem 4rem;
+  color: #ffffff;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #070a0f 0%, #11141d 100%);
+}
+
+.hero {
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.hero h1 {
+  margin-bottom: 0.75rem;
+  font-size: clamp(40px, 4vw, 64px);
+  letter-spacing: -0.04em;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.7;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.gridSection {
+  max-width: 1200px;
+  margin: 2.5rem auto;
+}
+
+.gridSection h2 {
+  margin-bottom: 1.25rem;
+  font-size: 24px;
+}
+
+.tokenGrid,
+.fontGrid,
+.imageGrid,
+.iconGrid,
+.buttonGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.tokenGrid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.tokenCard,
+.fontCard,
+.imageCard,
+.iconCard {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  text-align: center;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.tokenCard {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.tokenCard:hover,
+.fontCard:hover,
+.imageCard:hover,
+.iconCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(74, 246, 205, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.tokenSwatch {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.tokenCard strong,
+.tokenCard p,
+.fontMeta,
+.imageCard figcaption,
+.iconCard span,
+.previewLabel {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.fontGrid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.fontCard {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.fontExample {
+  line-height: 1.1;
+}
+
+.fontMeta {
+  font-size: 15, 2px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.imageGrid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.imageCard {
+  cursor: pointer;
+}
+
+.imageCard img {
+  width: 100%;
+  border-radius: 20px;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.imageCard figcaption,
+.iconCard span {
+  font-size: 15, 2px;
+}
+
+.iconGrid {
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  align-items: center;
+}
+
+.iconCard {
+  min-height: 160px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.iconCard:hover {
+  transform: translateY(-3px);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.devLink {
+  color: #4af6cd;
+  text-decoration: none;
+}
+
+.devLink:hover {
+  text-decoration: underline;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
+  color: currentColor;
+  margin-bottom: 0.75rem;
+}
+
+.externalSvg {
+  width: 100%;
+  min-height: 120px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.buttonGrid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 10, 15, 0.9);
+  display: grid;
+  place-items: center;
+  z-index: 2000;
+  padding: 1.5rem;
+  animation: fadeInOverlay 220ms ease-out forwards;
+}
+
+.opening {
+  animation: fadeInOverlay 220ms ease-out forwards;
+}
+
+.closing {
+  animation: fadeOutOverlay 180ms ease-in forwards;
+}
+
+.modal {
+  width: min(100%, 920px);
+  max-height: min(100%, 88vh);
+  overflow: auto;
+  background: #0f1018;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  padding: 1.5rem;
+  position: relative;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
+  transform: translateY(20px) scale(0.98);
+  opacity: 0;
+  animation: zoomInModal 220ms ease-out forwards;
+}
+
+.opening .modal {
+  animation: zoomInModal 220ms ease-out forwards;
+}
+
+.closing .modal {
+  animation: zoomOutModal 180ms ease-in forwards;
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 22, 4px;
+  cursor: pointer;
+}
+
+.previewContent {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+}
+
+.previewImage,
+.previewSvg,
+.externalPreview {
+  width: 100%;
+  max-width: 740px;
+  max-height: 68vh;
+  object-fit: contain;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.previewSvg {
+  width: min(320px, 100%);
+  height: min(320px, 100%);
+}
+
+.previewLabel {
+  margin-top: 0.75rem;
+  font-size: 15, 2px;
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutOverlay {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes zoomInModal {
+  from {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOutModal {
+  from {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 2rem 1rem 3rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(32px, 6vw, 48px);
+  }
+
+  .modal {
+    padding: 1rem;
+  }
+
+  .modalClose {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+}

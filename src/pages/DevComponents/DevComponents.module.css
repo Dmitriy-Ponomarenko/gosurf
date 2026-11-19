@@ -1,0 +1,219 @@
+.page {
+  min-height: 100vh;
+  padding: 3rem 2rem 4rem;
+  color: #ffffff;
+  background: linear-gradient(180deg, #070a0f 0%, #11141d 100%);
+}
+
+.hero {
+  max-width: 840px;
+  margin: 0 auto 2.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 4vw, 64px);
+  margin-bottom: 0.75rem;
+}
+
+.hero p {
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.75;
+  max-width: 720px;
+}
+
+.linkRow {
+  margin-top: 1rem;
+}
+
+.secondaryLink {
+  color: #4af6cd;
+  text-decoration: none;
+}
+
+.secondaryLink:hover {
+  text-decoration: underline;
+}
+
+.browserArea {
+  max-width: 1200px;
+  margin: 2.5rem auto;
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+.sidebar {
+  position: sticky;
+  top: 3rem;
+  align-self: start;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar h2 {
+  margin: 0 0 1rem;
+  font-size: 20px;
+}
+
+.itemList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.itemButton {
+  width: 100%;
+  text-align: left;
+  border: none;
+  border-radius: 16px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.itemButton:hover,
+.itemButton:focus-visible {
+  background: rgba(74, 246, 205, 0.12);
+  outline: none;
+}
+
+.activeItem {
+  background: rgba(74, 246, 205, 0.16);
+  color: #ffffff;
+}
+
+.anchorButton {
+  display: inline-flex;
+  overflow: hidden;
+  border-radius: 32px;
+  text-decoration: none;
+  color: #0f1010;
+  font-weight: 700;
+  background: #4af6cd;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+}
+
+.anchorButton:hover {
+  opacity: 0.95;
+}
+
+.buttonPrefix,
+.buttonText {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.1rem 1.25rem;
+  white-space: nowrap;
+}
+
+.buttonPrefix {
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffffff;
+}
+
+.buttonText {
+  background: #4af6cd;
+}
+
+.sideNav {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.sidebarLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.25rem;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.sidebarLink:hover,
+.sidebarLink:focus-visible {
+  background: rgba(74, 246, 205, 0.14);
+  outline: none;
+}
+
+.sidebarIcon {
+  width: 28px;
+  height: 28px;
+  color: currentColor;
+}
+
+.previewPane {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+  min-height: 60vh;
+}
+
+.previewContent {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+}
+
+.previewHeader h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.previewFrame {
+  background: rgba(0, 0, 0, 0.16);
+  border-radius: 20px;
+  padding: 1.5rem;
+}
+
+.componentCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15);
+}
+
+.componentCard h3 {
+  margin: 0 0 0.75rem;
+  font-size: 18,4px;
+}
+
+.componentCard p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.6;
+}
+
+.cardAction {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.previewWrap {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
