@@ -84,6 +84,7 @@ const Curtains: React.FC = () => {
           </div>
           <div
             className={styles.curtainsGrid}
+            data-active-index={activeIndex}
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
             onFocusCapture={() => setPaused(true)}
@@ -92,25 +93,36 @@ const Curtains: React.FC = () => {
                 setPaused(false);
             }}
           >
-            {slides.map((s, i) => (
-              <div
-                key={s.id}
-                className={i === activeIndex ? styles.activeCurtain : undefined}
-                tabIndex={0}
-                aria-label={`${s.title}, ${s.location}`}
-                onMouseEnter={() => setActiveIndex(i)}
-                onFocus={() => setActiveIndex(i)}
-                onClick={() => setActiveIndex(i)}
-              >
-                <Curtain
-                  title={s.title}
-                  location={s.location}
-                  backgroundImage={s.bg}
-                  backgroundImage2x={s.bg2x}
-                  active={i === activeIndex}
-                />
-              </div>
-            ))}
+            <div
+              className={styles.curtainsTrack}
+              style={
+                {
+                  '--active-offset': `${activeIndex * -25}%`,
+                } as React.CSSProperties
+              }
+            >
+              {slides.map((s, i) => (
+                <div
+                  key={s.id}
+                  className={
+                    i === activeIndex ? styles.activeCurtain : undefined
+                  }
+                  tabIndex={0}
+                  aria-label={`${s.title}, ${s.location}`}
+                  onMouseEnter={() => setActiveIndex(i)}
+                  onFocus={() => setActiveIndex(i)}
+                  onClick={() => setActiveIndex(i)}
+                >
+                  <Curtain
+                    title={s.title}
+                    location={s.location}
+                    backgroundImage={s.bg}
+                    backgroundImage2x={s.bg2x}
+                    active={i === activeIndex}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

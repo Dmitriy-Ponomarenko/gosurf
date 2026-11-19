@@ -1,6 +1,6 @@
 // src/components/LandingPage/HeroSection/HeroSection.tsx
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, EffectFade, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -23,11 +23,10 @@ type Resort = {
   date: string;
   region: string;
   backgroundImage: string;
-  mapPoints: [
-    { label: string; x: number; y: number },
-    { label: string; x: number; y: number },
-  ];
+  mapDestination: { label: string; x: number; y: number };
 };
+
+const routeStart = { label: 'Route start', x: 76, y: 16 };
 
 const resorts: Resort[] = [
   {
@@ -40,10 +39,7 @@ const resorts: Resort[] = [
     date: '20 | 06 | 2018',
     region: 'North Shore',
     backgroundImage: '/images/north-shore.jpg',
-    mapPoints: [
-      { label: 'Route start', x: 80, y: 20 },
-      { label: 'North Shore - Oahu, HI', x: 50, y: 60 },
-    ],
+    mapDestination: { label: 'North Shore - Oahu, HI', x: 50, y: 60 },
   },
   {
     id: 'south-shore',
@@ -55,10 +51,7 @@ const resorts: Resort[] = [
     date: '14 | 08 | 2019',
     region: 'South Shore',
     backgroundImage: '/images/south-shore.jpg',
-    mapPoints: [
-      { label: 'Route start', x: 75, y: 25 },
-      { label: 'South Shore - Maui, HI', x: 40, y: 65 },
-    ],
+    mapDestination: { label: 'South Shore - Maui, HI', x: 40, y: 65 },
   },
   {
     id: 'east-shore',
@@ -70,10 +63,7 @@ const resorts: Resort[] = [
     date: '02 | 11 | 2020',
     region: 'East Shore',
     backgroundImage: '/images/east-shore.jpg',
-    mapPoints: [
-      { label: 'Route start', x: 70, y: 30 },
-      { label: 'East Shore - Bali, ID', x: 45, y: 70 },
-    ],
+    mapDestination: { label: 'East Shore - Bali, ID', x: 45, y: 70 },
   },
   {
     id: 'west-shore',
@@ -85,16 +75,19 @@ const resorts: Resort[] = [
     date: '11 | 09 | 2021',
     region: 'West Shore',
     backgroundImage: '/images/west-shore.jpg',
-    mapPoints: [
-      { label: 'Route start', x: 85, y: 15 },
-      { label: 'West Shore - Malibu, CA', x: 55, y: 55 },
-    ],
+    mapDestination: { label: 'West Shore - Malibu, CA', x: 55, y: 55 },
   },
 ];
 
 const HeroSection: React.FC = () => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [currentTime, setCurrentTime] = useState(() => new Date());
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setCurrentTime(new Date()), 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   const handleSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.activeIndex);
@@ -155,13 +148,14 @@ const HeroSection: React.FC = () => {
                   strokeWidth="2"
                 />
                 <path
-                  d={`M ${activeResort.mapPoints[0].x * 10} ${activeResort.mapPoints[0].y * 4.96} C 750 180, 600 180, ${activeResort.mapPoints[1].x * 10} ${activeResort.mapPoints[1].y * 4.96}`}
+                  d={`M ${routeStart.x * 10.01} ${routeStart.y * 4.96} C ${routeStart.x * 10.01 - 60} ${routeStart.y * 4.96 + 110}, ${activeResort.mapDestination.x * 10.01 + 80} ${activeResort.mapDestination.y * 4.96 - 90}, ${activeResort.mapDestination.x * 10.01} ${activeResort.mapDestination.y * 4.96}`}
                   fill="none"
-                  stroke="white"
+                  stroke="#dedede"
+                  strokeOpacity=".85"
                   strokeWidth="2"
                 />
               </svg>
-              {activeResort.mapPoints.map(point => (
+              {[routeStart, activeResort.mapDestination].map(point => (
                 <div
                   key={point.label}
                   className={styles.mapPoint}
@@ -171,6 +165,16 @@ const HeroSection: React.FC = () => {
                 </div>
               ))}
             </div>
+            <time
+              className={styles.clock}
+              dateTime={currentTime.toISOString()}
+              aria-label={`Your local time: ${currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`}
+            >
+              {currentTime.toLocaleTimeString([], {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </time>
             <div className={styles.heroArrows}>
               <button
                 type="button"

@@ -66,6 +66,9 @@ const spots = [
 export default function LocationSection() {
   const [selected, setSelected] = useState(4);
   const spot = spots[selected] ?? spots[0];
+  const spotX = ((spot.longitude + 180) / 360) * 100;
+  const spotY = ((85 - spot.latitude) / 145) * 100;
+
   return (
     <section id="surf-section" className={styles.section}>
       <SectionHeading title="Surf" />
@@ -94,29 +97,37 @@ export default function LocationSection() {
               aria-pressed={selected === index}
             />
           ))}
-        </div>
-        <div className={styles.card} aria-live="polite">
-          <strong>{spot.name}</strong>
-          <FiArrowRight aria-hidden="true" />
-          <p>{spot.country}</p>
-          <div className={styles.metrics}>
-            <div>
-              <GiWaves />
-              <b>{spot.surf}</b>
-              <small>Surf (ft)</small>
+          <div
+            className={styles.card}
+            style={{
+              left: `${spotX}%`,
+              top: `${spotY}%`,
+              transform: `translate(${spotX > 55 ? 'calc(-100% - 16px)' : '16px'}, -50%)`,
+            }}
+            aria-live="polite"
+          >
+            <strong>{spot.name}</strong>
+            <FiArrowRight aria-hidden="true" />
+            <p>{spot.country}</p>
+            <div className={styles.metrics}>
+              <div>
+                <GiWaves />
+                <b>{spot.surf}</b>
+                <small>Surf (ft)</small>
+              </div>
+              <div>
+                <FiDroplet />
+                <b>{spot.tide}</b>
+                <small>Tide (ft)</small>
+              </div>
+              <div>
+                <FiWind />
+                <b>{spot.wind}</b>
+                <small>Wind (kts)</small>
+              </div>
             </div>
-            <div>
-              <FiDroplet />
-              <b>{spot.tide}</b>
-              <small>Tide (ft)</small>
-            </div>
-            <div>
-              <FiWind />
-              <b>{spot.wind}</b>
-              <small>Wind (kts)</small>
-            </div>
+            <small className={styles.sample}>Illustrative conditions</small>
           </div>
-          <small className={styles.sample}>Illustrative conditions</small>
         </div>
       </div>
     </section>

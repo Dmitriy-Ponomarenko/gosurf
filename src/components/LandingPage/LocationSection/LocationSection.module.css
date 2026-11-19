@@ -21,7 +21,7 @@
   position: relative;
   width: min(100%, 1200px);
   margin: 20px auto 0;
-  padding: 0 16px;
+  padding: 0 16px 230px;
 }
 .mapCanvas {
   position: relative;
@@ -57,12 +57,13 @@
   outline-offset: 4px;
 }
 .card {
-  position: relative;
-  width: 235px;
+  position: absolute;
+  z-index: 3;
+  width: min(293px, calc(100vw - 32px));
   padding: 22px;
-  background: rgba(14, 17, 17, 0.94);
+  background: rgba(14, 17, 17, 0.98);
   box-shadow: 0 12px 35px #0005;
-  margin: 20px auto 0;
+  pointer-events: none;
 }
 .card > strong {
   display: inline-block;
@@ -110,8 +111,5 @@
 @media (min-width: 768px) {
   .map {
     padding: 0 32px;
-  }
-  .card {
-    margin: 0 4% 0 auto;
   }
 }

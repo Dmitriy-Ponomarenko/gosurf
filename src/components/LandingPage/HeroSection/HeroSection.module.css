@@ -56,17 +56,22 @@
 .mapContainer {
   width: 100%;
   position: relative;
+  aspect-ratio: 1001 / 496;
 }
 .heroMap {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
   opacity: 0.8;
 }
 .mapPoint {
   position: absolute;
+  z-index: 1;
   width: 10px;
   height: 10px;
+  transform: translate(-50%, -50%);
   background: var(--green);
   border-radius: 50%;
   box-shadow: 0 0 12px #4af6cd;
@@ -78,6 +83,15 @@
   white-space: nowrap;
   color: white;
   font-size: 11px;
+}
+.clock {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  font-size: clamp(14px, 1.3vw, 18px);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
 }
 .heroArrows {
   position: absolute;

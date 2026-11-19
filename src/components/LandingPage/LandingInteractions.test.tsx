@@ -38,12 +38,20 @@ describe('landing interactions', () => {
     render(<LocationSection />);
     const malibu = screen.getByRole('button', { name: 'Show Malibu Beach' });
     const airlie = screen.getByRole('button', { name: 'Show Airlie Beach' });
+    const card = screen.getByText('Illustrative conditions').parentElement;
+    if (!card) throw new Error('Destination card should be rendered');
+
     expect(parseFloat(malibu.style.left)).toBeCloseTo(17, 0);
     expect(parseFloat(malibu.style.top)).toBeCloseTo(35, 0);
     expect(parseFloat(airlie.style.left)).toBeCloseTo(91, 0);
     expect(parseFloat(airlie.style.top)).toBeCloseTo(73, 0);
+    expect(parseFloat(card.style.left)).toBeCloseTo(91, 0);
+    expect(parseFloat(card.style.top)).toBeCloseTo(73, 0);
+
     fireEvent.click(malibu);
     expect(malibu).toHaveAttribute('aria-pressed', 'true');
+    expect(parseFloat(card.style.left)).toBeCloseTo(17, 0);
+    expect(parseFloat(card.style.top)).toBeCloseTo(35, 0);
     expect(screen.getByText('California, USA')).toBeInTheDocument();
   });
 
