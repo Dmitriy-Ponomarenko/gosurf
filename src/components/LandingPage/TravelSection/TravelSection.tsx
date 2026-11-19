@@ -1,13 +1,51 @@
-// src/components/LandingPage/TravelSection/TravelSection.tsx
+import FeatureSection from '../FeatureSection';
+import type { Feature } from '../FeatureSection';
 
-import React from 'react';
+const slides: [Feature, ...Feature[]] = [
+  {
+    title: 'Airlie Beach | Australia',
+    image: '/images/airlie-beach.jpg',
+    detail: 'Virgin Australia',
+    detailLabel: 'Airline',
+    showPlane: true,
+    facts: [
+      { label: 'Destination', value: 'Queensland Australia' },
+      { label: 'Distance', value: '7,065 miles' },
+      { label: 'Travel time', value: '23 hours 5 minutes' },
+      { label: 'Pricing', value: '$1,976 USD' },
+    ],
+  },
+  {
+    title: 'Malibu Beach | USA',
+    image: '/images/malibu-beach.jpg',
+    detail: 'California coast',
+    facts: [
+      { label: 'Destination', value: 'California USA' },
+      { label: 'Experience', value: 'Coastal escape' },
+      { label: 'Surf', value: 'All levels' },
+      { label: 'Season', value: 'Year round' },
+    ],
+  },
+  {
+    title: 'Cloud Nine | Philippines',
+    image: '/images/cloud-nine.jpg',
+    detail: 'Siargao island',
+    facts: [
+      { label: 'Destination', value: 'Siargao Philippines' },
+      { label: 'Experience', value: 'Island escape' },
+      { label: 'Surf', value: 'Reef breaks' },
+      { label: 'Season', value: 'September - November' },
+    ],
+  },
+];
 
-const TravelSection: React.FC = () => {
+export default function TravelSection() {
   return (
-    <section>
-      <h2>Travel Section ACTIVE</h2>
-    </section>
+    <FeatureSection
+      heading="Travel"
+      label="Shore"
+      detailLabel="Destination"
+      slides={slides}
+    />
   );
-};
-
-export default TravelSection;
+}

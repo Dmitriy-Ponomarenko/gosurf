@@ -1,3 +1,8 @@
+.homeSection :focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 4px;
+}
+
 .page {
   padding: 3rem 2rem 4rem;
   color: #ffffff;

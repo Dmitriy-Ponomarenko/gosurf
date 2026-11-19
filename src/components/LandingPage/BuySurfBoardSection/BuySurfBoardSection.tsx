@@ -1,62 +1,74 @@
-// src/components/LandingPage/BuySurfBoardSection/BuySurfBoardSection.tsx
+import { useState } from 'react';
 
-import React from 'react';
+import { SectionHeading, SectionLabel } from '../SectionParts';
 
 import styles from './BuySurfBoardSection.module.css';
 
-import '../../../index.css';
+const details = [
+  {
+    label: 'Board shape',
+    text: 'Double concave with vee shape low point',
+    className: 'shape',
+  },
+  { label: 'Rails', text: 'Shaped rails for smooth turns', className: 'rails' },
+  { label: 'Tail', text: 'Tail designed for control', className: 'tail' },
+] as const;
 
-const BuySurfBoardSection: React.FC = () => {
+export default function BuySurfBoardSection() {
+  const [active, setActive] = useState(0);
   return (
-    <section className={`${styles.buySection} section`}>
-      <div className={`${styles.buyContainer} container`}>
-        <h2>shop</h2>
-
-        <article className={styles.buyProductCard}>
-          <span className={styles.buyProductCategory}>Style</span>
-          <h3 className={styles.buyProductTitle}>North Nugget TT Surfboard</h3>
-
-          <div
-            className={styles.buyProductRating}
-            aria-label="5 out of 5 stars"
-          >
+    <section className={styles.buySection}>
+      <SectionHeading title="Shop" />
+      <div className={styles.layout}>
+        <div className={styles.product}>
+          <SectionLabel>Style</SectionLabel>
+          <h3>
+            North Nugget TT
+            <br /> Surfboard
+          </h3>
+          <div className={styles.rating} aria-label="5 out of 5 stars">
             ★★★★★
           </div>
-
-          <p className={styles.buyProductPrice}>
-            <data value="799.99">$799.99</data>
-          </p>
-
-          <a
-            href="/products/north-nugget-tt"
-            className={styles.buyProductButton}
+          <strong className={styles.price}>$799.99</strong>
+          <p>Product details are illustrative. Shop coming soon.</p>
+        </div>
+        <div className={styles.boardArea}>
+          <div
+            className={styles.board}
+            aria-label="Illustration of a surfboard"
           >
-            Drop In
-          </a>
-
-          <div className={styles.buyProductDescription}>
-            <p>Double Concave with Vee Shape Low Point</p>
-            {/* optional description */}
+            <span className={styles.boardLogo}>NORTH</span>
+            {details.map((detail, index) => (
+              <button
+                key={detail.label}
+                type="button"
+                className={`${styles.hotspot} ${styles[detail.className]}`}
+                aria-label={detail.label}
+                aria-pressed={active === index}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => setActive(index)}
+                onFocus={() => setActive(index)}
+              >
+                {active === index ? '−' : '+'}
+              </button>
+            ))}
           </div>
-        </article>
-        <div aria-labelledby="extras-title">
-          <h4 id="extras-title">Extras</h4>
-
-          <ul>
-            <li>
-              <span>Sex Wax</span>
-              <data value="24.99">$24.99</data>
-            </li>
-
-            <li>
-              <span>Pura Vida</span>
-              <data value="27.99">$27.99</data>
-            </li>
-          </ul>
+          <p className={styles.description} aria-live="polite">
+            {(details[active] ?? details[0]).text}
+          </p>
+        </div>
+        <div className={styles.extras}>
+          <h4>Extras</h4>
+          <div>
+            <span>Sex Wax</span>
+            <strong>$24.99</strong>
+          </div>
+          <div>
+            <span>Pura Vida</span>
+            <strong>$27.99</strong>
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default BuySurfBoardSection;
+}

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Button from '../Button/Button';
-
 import styles from './Curtain.module.css';
 import '../../index.css';
 
@@ -21,7 +19,11 @@ const Curtain: React.FC<Props> = ({
   active = false,
 }) => {
   return (
-    <div className={styles.curtain} role="group" aria-label={title}>
+    <div
+      className={`${styles.curtain} ${active ? styles.active : ''}`}
+      role="group"
+      aria-label={title}
+    >
       {backgroundImage2x !== undefined ? (
         <img
           className={styles.bg}
@@ -41,15 +43,12 @@ const Curtain: React.FC<Props> = ({
       </div>
 
       {active && (
-        <Button
-          variant="arrows"
-          leftText="View"
-          rightText="Surf"
-          className={styles.curtainButton}
-        />
+        <a href="#surf-section" className={styles.curtainButton}>
+          View <span>Surf →</span>
+        </a>
       )}
 
-      {!active && <div className={styles.mask} />}
+      <div className={styles.mask} />
     </div>
   );
 };

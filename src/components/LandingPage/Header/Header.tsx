@@ -1,16 +1,28 @@
 import React from 'react';
 
-import Button from '@/components/Button/Button';
-
 import styles from './Header.module.css';
+import NavigationIcon from './NavigationIcon';
 
-const Header: React.FC = () => {
+
+const Header: React.FC<{ location: string }> = ({ location }) => {
   const navItems = [
-    { id: 'surf', label: 'Surf', sectionId: 'resorts-section' },
-    { id: 'travel', label: 'Travel', sectionId: 'travel-section' },
-    { id: 'sleep', label: 'Sleep', sectionId: 'resorts-section' },
-    { id: 'shop', label: 'Shop', sectionId: 'surfboard-section' },
-  ];
+    { id: 'surf', label: 'Surf', sectionId: 'surf-section' },
+    {
+      id: 'travel',
+      label: 'Travel',
+      sectionId: 'travel-section',
+    },
+    {
+      id: 'sleep',
+      label: 'Sleep',
+      sectionId: 'resorts-section',
+    },
+    {
+      id: 'shop',
+      label: 'Shop',
+      sectionId: 'surfboard-section',
+    },
+  ] as const;
 
   const handleNavClick = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -21,6 +33,12 @@ const Header: React.FC = () => {
 
   return (
     <nav className={styles.sidebar}>
+      <a className={styles.logo} href="#top" aria-label="Go Surf home">
+        <strong>
+          <span>Surf</span>
+        </strong>
+        <span className={styles.logoGo}>Go</span>
+      </a>
       <div className={styles.navContainer}>
         {navItems.map(item => (
           <button
@@ -29,12 +47,13 @@ const Header: React.FC = () => {
             onClick={() => handleNavClick(item.sectionId)}
             title={item.label}
           >
-            <svg className={styles.icon} aria-hidden="true">
-              <use href={`#${item.id}`} />
-            </svg>
+            <NavigationIcon name={item.id} />
             <span className={styles.label}>{item.label}</span>
           </button>
         ))}
+      </div>
+      <div className={styles.sidebarLocation}>
+        <span aria-hidden="true">⌖</span> {location}
       </div>
     </nav>
   );

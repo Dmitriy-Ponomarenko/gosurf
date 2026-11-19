@@ -1,6 +1,6 @@
 // src/components/LandingPage/Curtains/Curtains.tsx
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Curtain from '@/components/Curtain/Curtain';
 
@@ -40,6 +40,16 @@ const slides = [
 
 const Curtains: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+      return;
+    const timer = window.setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % slides.length);
+    }, 5000);
+    return () => window.clearInterval(timer);
+  }, [paused]);
 
   const handlePrev = () => {
     setActiveIndex(prev => (prev === 0 ? slides.length - 1 : prev - 1));
@@ -72,9 +82,26 @@ const Curtains: React.FC = () => {
               →
             </button>
           </div>
-          <div className={styles.curtainsGrid}>
+          <div
+            className={styles.curtainsGrid}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocusCapture={() => setPaused(true)}
+            onBlurCapture={event => {
+              if (!event.currentTarget.contains(event.relatedTarget))
+                setPaused(false);
+            }}
+          >
             {slides.map((s, i) => (
-              <div key={s.id} onClick={() => setActiveIndex(i)}>
+              <div
+                key={s.id}
+                className={i === activeIndex ? styles.activeCurtain : undefined}
+                tabIndex={0}
+                aria-label={`${s.title}, ${s.location}`}
+                onMouseEnter={() => setActiveIndex(i)}
+                onFocus={() => setActiveIndex(i)}
+                onClick={() => setActiveIndex(i)}
+              >
                 <Curtain
                   title={s.title}
                   location={s.location}

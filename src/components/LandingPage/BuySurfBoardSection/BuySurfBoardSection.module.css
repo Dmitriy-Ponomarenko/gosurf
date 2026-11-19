@@ -1,15 +1,189 @@
 .buySection {
-  padding-bottom: 90px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 70% 50%, #25393a 0%, transparent 45%);
 }
-
-@media screen and (min-width: 768px) {
-  .buySection {
-    padding-bottom: 120px;
+.layout {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px 60px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 16px;
+}
+.product {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+.product h3 {
+  margin: 20px 0 24px;
+  font-size: clamp(22px, 5vw, 30px);
+  font-weight: 900;
+  line-height: 1.1;
+}
+.rating {
+  color: var(--green);
+  font-size: 25px;
+  letter-spacing: 0.1em;
+}
+.price {
+  display: block;
+  margin-top: 8px;
+  font-size: 25px;
+}
+.product p {
+  max-width: 250px;
+  margin-top: 20px;
+  color: #aaa;
+  font-size: 12px;
+  text-transform: none;
+}
+.boardArea {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+  min-height: 400px;
+  padding-bottom: 60px;
+}
+.board {
+  position: relative;
+  flex-shrink: 0;
+  width: 110px;
+  height: 370px;
+  background: linear-gradient(160deg, #42c8ad 10%, #2ca58f 58%, #08463e);
+  border: 3px solid #3fb7a0;
+  border-radius: 50% 50% 46% 46% / 28% 28% 18% 18%;
+  box-shadow:
+    inset -15px 0 20px #0003,
+    0 20px 40px #0004;
+}
+.boardLogo {
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid #fff9;
+  padding: 4px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+.hotspot {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border-radius: 50%;
+  background: white;
+  color: #25bca0;
+  font-size: 19px;
+  line-height: 20px;
+  font-weight: 900;
+}
+.shape {
+  top: 30%;
+  right: 5%;
+}
+.rails {
+  top: 47%;
+  left: -7px;
+}
+.tail {
+  bottom: 12%;
+  left: 20%;
+}
+.description {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  font-weight: 800;
+  font-size: 11px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.extras {
+  align-self: center;
+  display: grid;
+  gap: 20px;
+}
+.extras h4 {
+  font-size: 22px;
+}
+.extras div {
+  display: grid;
+  gap: 8px;
+}
+.extras span {
+  color: #aaa;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.extras strong {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  .product {
+    grid-column: auto;
+    align-self: start;
+  }
+  .extras {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+  }
+  .extras h4 {
+    grid-column: 1 / -1;
   }
 }
-
-@media screen and (min-width: 1280) {
+@media (min-width: 1024px) {
   .buySection {
-    padding-bottom: 142px;
+    min-height: 780px;
+  }
+  .layout {
+    padding: 10px 6% 80px;
+    grid-template-columns: 1fr 1.3fr 1fr;
+    align-items: center;
+    gap: 25px;
+  }
+  .product {
+    align-self: center;
+  }
+  .product h3 {
+    font-size: clamp(24px, 3vw, 34px);
+  }
+  .product p {
+    margin-top: 30px;
+  }
+  .boardArea {
+    min-height: 540px;
+    padding: 0;
+  }
+  .board {
+    width: 170px;
+    height: 520px;
+  }
+  .description {
+    left: 75%;
+    top: 30%;
+    bottom: auto;
+    width: 180px;
+    font-size: 15px;
+  }
+  .description::before {
+    content: '';
+    position: absolute;
+    width: 45px;
+    left: -55px;
+    top: 7px;
+    height: 1px;
+    background: #999;
+  }
+  .extras {
+    grid-column: auto;
+    align-self: end;
+    padding-bottom: 20px;
+    margin-top: 0;
   }
 }

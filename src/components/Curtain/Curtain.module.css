@@ -1,68 +1,120 @@
 .curtain {
   position: relative;
   width: 100%;
-  height: 750px;
-  background-size: cover;
-  background-position: center;
-  overflow: visible;
-  display: block;
+  height: 370px;
+  overflow: hidden;
 }
-
+.curtain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    #0009,
+    transparent 35%,
+    transparent 65%,
+    #0009
+  );
+}
 .bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  z-index: 1;
 }
-
 .title {
-  width: min-content;
   position: absolute;
-  top: 28px;
-  left: 28px;
-  color: #ffffff;
-  font-weight: 800;
-  font-size: 40px;
-  letter-spacing: -0.02em;
+  top: 20px;
+  left: 12px;
+  right: 12px;
+  z-index: 2;
+  max-width: 180px;
+  font-weight: 900;
+  font-size: clamp(20px, 3vw, 30px);
   line-height: 1;
-  text-transform: uppercase;
-  z-index: 4;
 }
-
 .leftLabel {
   position: absolute;
-  left: 38px;
-  bottom: 80px;
-  transform-origin: left bottom;
-  z-index: 4;
-  white-space: nowrap;
+  left: 12px;
+  right: 12px;
+  bottom: 60px;
+  z-index: 2;
 }
-
 .leftLabel p {
-  display: block;
-  color: var(--text-main);
-  letter-spacing: 8px;
-  text-transform: uppercase;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  font-size: 18px;
+  color: white;
+  font-size: 9px;
+  line-height: 1.4;
+  letter-spacing: 0.13em;
 }
-
 .curtainButton {
   position: absolute;
-  left: 40px;
-  z-index: 4;
+  left: 8px;
   bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
-
+.curtainButton span {
+  margin-left: 5px;
+  padding: 12px 7px;
+  background: var(--green);
+  font-size: inherit;
+}
 .mask {
   position: absolute;
   inset: 0;
-  background: var(--mask-color);
-  opacity: 0.85;
-  z-index: 3;
+  background: rgba(15, 23, 24, 0.65);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.active .mask {
+  opacity: 0;
+}
+@media (min-width: 768px) {
+  .curtain {
+    height: 450px;
+  }
+}
+@media (min-width: 1024px) {
+  .curtain {
+    height: clamp(450px, 55vw, 700px);
+  }
+  .title {
+    top: 48px;
+    left: 28px;
+    right: 20px;
+    max-width: 230px;
+    font-size: clamp(24px, 3vw, 40px);
+  }
+  .leftLabel {
+    left: 30px;
+    right: auto;
+    bottom: 80px;
+  }
+  .leftLabel p {
+    font-size: 13px;
+    letter-spacing: 0.45em;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+  .curtainButton {
+    left: 28px;
+    font-size: clamp(18px, 2vw, 28px);
+  }
+  .curtainButton span {
+    margin-left: 10px;
+    padding: 20px 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mask {
+    transition: none;
+  }
 }

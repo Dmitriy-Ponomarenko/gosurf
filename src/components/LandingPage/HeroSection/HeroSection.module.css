@@ -1,17 +1,15 @@
 .heroSection {
   position: relative;
-  height: 100vh;
+  height: 100svh;
+  min-height: 650px;
   width: 100%;
 }
-
 .swiperContainer {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
-
 .slideBg {
   width: 100%;
   height: 100%;
@@ -19,49 +17,182 @@
   background-position: center;
   position: relative;
 }
-
 .slideBg::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  /* at 0% 0% значит, что градиент начинается (более светлый)
-     из левого верхнего угла и уходит в темноту в правый нижний */
-  background: radial-gradient(
-    ellipse at 30% 100%,
-    rgba(34, 34, 34, 0.43) 0%,
-    rgba(15, 15, 15, 1) 100%
-  );
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10, 15, 16, 0.22), rgba(8, 12, 13, 0.4)),
+    linear-gradient(0deg, #101414 0%, transparent 65%);
 }
-
-.contentOverlay {
+.heroSection .heroContainer {
   position: relative;
   z-index: 10;
+  max-width: none;
+  width: 100%;
   height: 100%;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  pointer-events: none;
+}
+.heroContainer > * {
+  pointer-events: auto;
+}
+.contentOverlay {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 20px 20px 25px;
+  min-width: 0;
 }
-
-.navWrapper {
+.rightTop {
+  position: relative;
+  align-self: flex-end;
+  width: 76%;
+}
+.mapContainer {
+  width: 100%;
+  position: relative;
+}
+.heroMap {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.8;
+}
+.mapPoint {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 12px #4af6cd;
+}
+.mapPoint span {
+  position: absolute;
+  right: 18px;
+  top: -3px;
+  white-space: nowrap;
+  color: white;
+  font-size: 11px;
+}
+.heroArrows {
+  position: absolute;
+  top: -20px;
+  right: 0;
   display: flex;
-  gap: 40px;
-  border-top: 1px solid white;
-  padding-top: 20px;
+  gap: 12px;
 }
-
+.heroArrows button {
+  font-size: 28px;
+  padding: 2px;
+}
+.rightBottom {
+  width: 100%;
+  align-self: flex-end;
+}
+.rightContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  text-align: right;
+}
+.eyebrow,
+.conditionBox span {
+  color: #aaa;
+  font-size: 14px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+}
+.eyebrow::before,
+.conditionBox span::before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 60px;
+  height: 1px;
+  margin-right: 20px;
+  background: #777;
+}
+.regionTitle {
+  font-size: clamp(40px, 10vw, 65px);
+  font-weight: 900;
+  line-height: 1;
+}
+.conditionBox {
+  margin-top: 20px;
+}
+.conditionValue {
+  color: white;
+  margin-top: 12px;
+  font-size: clamp(22px, 2.5vw, 36px);
+  font-weight: 800;
+}
+.navigationPanel {
+  width: min(100%, 800px);
+  margin-top: 25px;
+}
+.navWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
 .navItem {
   display: flex;
   flex-direction: column;
-  opacity: 0.5;
-  transition: var(--transition);
+  gap: 8px;
+  min-width: 0;
+  border-top: 3px solid white;
+  padding: 8px 0;
+  text-align: left;
 }
-
 .navItem.active {
-  opacity: 1;
-  border-top: 2px solid var(--green); /* Активная линия */
-  margin-top: -1px;
+  border-color: var(--green);
+}
+.navIndex {
+  font-weight: 800;
+}
+.navLabel {
+  font-size: 10px;
+  color: #bbb;
+}
+@media (min-width: 768px) {
+  .heroSection .heroContainer {
+    grid-template-columns: 100px minmax(0, 1fr);
+    grid-template-rows: 1fr;
+  }
+  .contentOverlay {
+    padding: 30px 5% 30px 6%;
+  }
+  .rightTop {
+    width: min(650px, 70%);
+  }
+  .heroArrows {
+    top: 0;
+  }
+  .regionTitle {
+    font-size: clamp(42px, 5.5vw, 80px);
+  }
+  .navigationPanel {
+    margin-top: 40px;
+  }
+  .navWrapper {
+    gap: 24px;
+  }
+  .navItem {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .navLabel {
+    font-size: 12px;
+  }
+}
+@media (min-width: 1024px) {
+  .heroSection .heroContainer {
+    grid-template-columns: 125px minmax(0, 1fr);
+  }
 }

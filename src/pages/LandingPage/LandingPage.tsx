@@ -1,7 +1,6 @@
 // src/pages/LandingPage/LandingPage.tsx
 
 import Footer from '@/components/Footer/Footer';
-import BookFlightSection from '@/components/LandingPage/BookFlightSection/BookFlightSection';
 import BuySurfBoardSection from '@/components/LandingPage/BuySurfBoardSection/BuySurfBoardSection';
 import Curtains from '@/components/LandingPage/Curtains/Curtains';
 import HeroSection from '@/components/LandingPage/HeroSection/HeroSection';
@@ -22,7 +21,6 @@ const LandingPage = () => {
         <section id="travel-section">
           <TravelSection />
         </section>
-        <BookFlightSection />
         <section id="resorts-section">
           <ResortsSection />
         </section>
