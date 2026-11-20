@@ -15,6 +15,8 @@ publish supplied images.
 
 ## Deployment
 
+Use Node.js 22.12 or newer within the Node 22 release line for local builds
+and deployment; CI uses Node.js 22.
 The GitHub Actions workflow deploys pushes to `master` to the Cloudflare Worker
 configured in `wrangler.jsonc`, after quality checks and tests pass. Configure
 the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets, and
