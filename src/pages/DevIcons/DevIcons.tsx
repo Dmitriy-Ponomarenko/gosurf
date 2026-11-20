@@ -209,14 +209,9 @@ const DevIcons: React.FC = () => {
       <section className={styles.gridSection}>
         <h2>Button variants</h2>
         <div className={styles.buttonGrid}>
-          <Button>Default</Button>
-          <Button variant="ghost">Ghost</Button>
-          <Button variant="primary">Primary</Button>
-          <Button variant="outline">Outline</Button>
-          <Button secondary="FLIGHT →">BOOK -</Button>
-          <Button variant="primary" secondary="GO →">
-            START
-          </Button>
+          <Button leftText="Default" />
+          <Button variant="arrows" leftText="Book" rightText="Flight" />
+          <Button variant="arrows" leftText="Start" rightText="Go" />
         </div>
       </section>
 

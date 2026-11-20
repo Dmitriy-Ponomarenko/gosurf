@@ -8,9 +8,19 @@ The dotted world map uses public-domain [Natural Earth](https://www.naturalearth
 Surf conditions are illustrative, not geolocation or live surf data. Travel, resort,
 and shop prices and ratings are examples; booking and purchases are not connected.
 
-The reference design still needs licensed destination/resort photography,
-surfboard and accessory images, and the decorative hammock, flowers, and drink
-artwork. Existing beach images and a board illustration are used in their place.
+The supplied surfboard, accessory, resort, plane, hammock and drink artwork is
+used on the landing page. Raster artwork uses normal and 2× image variants;
+the world map is a resolution-independent SVG. Ensure you have the rights to
+publish supplied images.
+
+## Deployment
+
+The GitHub Actions workflow deploys pushes to `master` to the Cloudflare Worker
+configured in `wrangler.jsonc`, after quality checks and tests pass. Configure
+the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` repository secrets, and
+check the Actions run for failures. Changes on other branches are not deployed
+until merged into `master`. If production uses a different Cloudflare project or
+Git integration, verify its production branch and build settings separately.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 

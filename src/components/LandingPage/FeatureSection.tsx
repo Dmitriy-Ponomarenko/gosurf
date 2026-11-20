@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import type { CSSProperties } from 'react';
 
 import styles from './FeatureSection.module.css';
 import { SectionHeading, SectionLabel, SliderArrows } from './SectionParts';
@@ -6,6 +7,7 @@ import { SectionHeading, SectionLabel, SliderArrows } from './SectionParts';
 export type Feature = {
   title: string;
   image: string;
+  image2x: string;
   detail: string;
   detailLabel?: string;
   facts: { label: string; value: string }[];
@@ -40,9 +42,12 @@ export default function FeatureSection({
       <div
         key={slide.title}
         className={styles.visual}
-        style={{
-          backgroundImage: `linear-gradient(90deg, transparent 30%, #141616 100%), linear-gradient(0deg, #141616 0%, transparent 65%), url("${slide.image}")`,
-        }}
+        style={
+          {
+            '--image': `url("${slide.image}")`,
+            '--image-2x': `url("${slide.image2x}")`,
+          } as CSSProperties
+        }
       />
       <div className={styles.container}>
         <div className={styles.intro}>
@@ -68,7 +73,30 @@ export default function FeatureSection({
           </h3>
         </div>
         {slide.showPlane === true && (
-          <img className={styles.plane} src="/images/plane.png" alt="" />
+          <img
+            className={styles.plane}
+            src="/images/plane.png"
+            srcSet="/images/plane@2x.png 2x"
+            alt=""
+          />
+        )}
+        {index === 0 && (
+          <img
+            className={stay ? styles.hammock : styles.cocktail}
+            src={stay ? '/images/hammock.png' : '/images/cocktail.png'}
+            srcSet={
+              stay ? '/images/hammock@2x.png 2x' : '/images/cocktail@2x.png 2x'
+            }
+            alt=""
+          />
+        )}
+        {stay && index === 0 && (
+          <img
+            className={styles.flower}
+            src="/images/frangipani.png"
+            srcSet="/images/frangipani@2x.png 2x"
+            alt=""
+          />
         )}
         <div className={styles.facts}>
           {slide.facts.map(fact => (

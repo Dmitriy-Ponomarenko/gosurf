@@ -24,7 +24,7 @@ const REQUEST_BODY_SCHEMA = z.object({
 const RESPONSE_SCHEMA = z.object({
   id: z.number(),
   author_id: z.number(),
-  type: z.string(),
+  type: z.enum(['need', 'offer', 'question']),
   text: z.string(),
   created_at: z.number(),
   updated_at: z.number(),

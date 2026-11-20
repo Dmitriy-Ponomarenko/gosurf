@@ -38,11 +38,16 @@ export async function createPost(
       })
       .returning();
 
-    if (!post) {
+    if (
+      !post ||
+      (post.type !== 'need' &&
+        post.type !== 'offer' &&
+        post.type !== 'question')
+    ) {
       throw new PostCreationFailedException();
     }
 
-    return post;
+    return { ...post, type: post.type };
   } catch (error) {
     if (error instanceof PostCreationFailedException) {
       throw error;

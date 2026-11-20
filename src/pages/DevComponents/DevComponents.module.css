@@ -197,7 +197,7 @@
 
 .componentCard h3 {
   margin: 0 0 0.75rem;
-  font-size: 18,4px;
+  font-size: 18, 4px;
 }
 
 .componentCard p {
@@ -216,4 +216,3 @@
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
 }
-

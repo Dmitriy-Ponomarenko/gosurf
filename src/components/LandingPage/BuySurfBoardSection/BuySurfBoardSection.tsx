@@ -33,11 +33,12 @@ export default function BuySurfBoardSection() {
           <p>Product details are illustrative. Shop coming soon.</p>
         </div>
         <div className={styles.boardArea}>
-          <div
-            className={styles.board}
-            aria-label="Illustration of a surfboard"
-          >
-            <span className={styles.boardLogo}>NORTH</span>
+          <div className={styles.board}>
+            <img
+              src="/images/surfboard.png"
+              srcSet="/images/surfboard@2x.png 2x"
+              alt="North Nugget TT surfboard"
+            />
             {details.map((detail, index) => (
               <button
                 key={detail.label}
@@ -60,10 +61,16 @@ export default function BuySurfBoardSection() {
         <div className={styles.extras}>
           <h4>Extras</h4>
           <div>
+            <img src="/images/wax.png" srcSet="/images/wax@2x.png 2x" alt="" />
             <span>Sex Wax</span>
             <strong>$24.99</strong>
           </div>
           <div>
+            <img
+              src="/images/bracelet.png"
+              srcSet="/images/bracelet@2x.png 2x"
+              alt=""
+            />
             <span>Pura Vida</span>
             <strong>$27.99</strong>
           </div>

@@ -10,6 +10,13 @@
   height: 370px;
   background-size: cover;
   background-position: center;
+  background-image:
+    linear-gradient(90deg, transparent 30%, #141616 100%),
+    linear-gradient(0deg, #141616 0%, transparent 65%), var(--image);
+  background-image:
+    linear-gradient(90deg, transparent 30%, #141616 100%),
+    linear-gradient(0deg, #141616 0%, transparent 65%),
+    image-set(var(--image) 1x, var(--image-2x) 2x);
   animation: slide-in 0.5s ease both;
 }
 @keyframes slide-in {
@@ -53,6 +60,13 @@
   top: 205px;
   right: 0;
   width: 45%;
+  pointer-events: none;
+}
+.hammock,
+.cocktail,
+.flower {
+  display: none;
+  position: absolute;
   pointer-events: none;
 }
 .facts {
@@ -169,6 +183,18 @@
     right: -12%;
     width: min(55%, 620px);
   }
+  .hammock {
+    display: block;
+    top: 335px;
+    right: -10%;
+    width: min(42%, 500px);
+  }
+  .cocktail {
+    display: block;
+    right: -12%;
+    bottom: 30px;
+    width: min(22%, 220px);
+  }
   .facts {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 25px;
@@ -180,7 +206,7 @@
     padding-left: 38px;
   }
   .fact strong {
-    font-size: clamp(19px, 2.2vw, 29px);
+    font-size: clamp(17px, 1.8vw, 24px);
   }
   .fact > span {
     position: absolute;
@@ -193,6 +219,12 @@
   .counter {
     margin-top: 8px;
     text-align: right;
+  }
+  .flower {
+    display: block;
+    right: -10%;
+    bottom: 40px;
+    width: min(20%, 200px);
   }
   .note {
     margin-top: 55px;
