@@ -1,6 +1,6 @@
 // src/components/LandingPage/HeroSection/HeroSection.tsx
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FiChevronsDown } from 'react-icons/fi';
 import type { Swiper as SwiperType } from 'swiper';
 import { Autoplay, EffectFade, Navigation } from 'swiper/modules';
@@ -24,6 +24,7 @@ type Resort = {
   date: string;
   region: string;
   backgroundImage: string;
+  backgroundImage2x: string;
   mapDestination: { label: string; x: number; y: number };
 };
 
@@ -58,6 +59,7 @@ const resorts: Resort[] = [
     date: '20 | 06 | 2018',
     region: 'North Shore',
     backgroundImage: '/images/north-shore.jpg',
+    backgroundImage2x: '/images/north-shore@2x.jpg',
     mapDestination: {
       label: 'North Shore - Oahu, HI',
       x: 560 / 10.01,
@@ -74,6 +76,7 @@ const resorts: Resort[] = [
     date: '14 | 08 | 2019',
     region: 'South Shore',
     backgroundImage: '/images/south-shore.jpg',
+    backgroundImage2x: '/images/south-shore@2x.jpg',
     mapDestination: { label: 'South Shore - Maui, HI', x: 34, y: 50 },
   },
   {
@@ -86,6 +89,7 @@ const resorts: Resort[] = [
     date: '02 | 11 | 2020',
     region: 'East Shore',
     backgroundImage: '/images/east-shore.jpg',
+    backgroundImage2x: '/images/east-shore@2x.jpg',
     mapDestination: {
       label: 'East Shore - Bali, ID',
       x: 645 / 10.01,
@@ -102,6 +106,7 @@ const resorts: Resort[] = [
     date: '11 | 09 | 2021',
     region: 'West Shore',
     backgroundImage: '/images/west-shore.jpg',
+    backgroundImage2x: '/images/west-shore@2x.jpg',
     mapDestination: {
       label: 'West Shore - Malibu, CA',
       x: 455 / 10.01,
@@ -113,12 +118,6 @@ const resorts: Resort[] = [
 const HeroSection: React.FC = () => {
   const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [currentTime, setCurrentTime] = useState(() => new Date());
-
-  useEffect(() => {
-    const timer = window.setInterval(() => setCurrentTime(new Date()), 60_000);
-    return () => window.clearInterval(timer);
-  }, []);
 
   const handleSlideChange = (swiper: SwiperType) => {
     setActiveIndex(swiper.activeIndex);
@@ -160,18 +159,19 @@ const HeroSection: React.FC = () => {
           <SwiperSlide key={resort.id}>
             <div
               className={styles.slideBg}
-              style={{ backgroundImage: `url(${resort.backgroundImage})` }}
+              style={
+                {
+                  '--image': `url("${resort.backgroundImage}")`,
+                  '--image-2x': `url("${resort.backgroundImage2x}")`,
+                } as React.CSSProperties
+              }
             />
           </SwiperSlide>
         ))}
       </Swiper>
 
       <div className={`${styles.heroContainer} container`}>
-        <Header
-          location={activeResort.location}
-          date={activeResort.date}
-          currentTime={currentTime}
-        />
+        <Header location={activeResort.location} date={activeResort.date} />
 
         <div className={styles.contentOverlay}>
           <div className={styles.rightTop}>

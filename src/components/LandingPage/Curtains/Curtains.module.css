@@ -58,7 +58,7 @@
   min-width: 0;
   position: relative;
   padding-right: 12px;
-  transition: flex 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: flex 0.5s ease;
 }
 .curtainsTrack > div:focus-within,
 .curtainsTrack > div:hover {

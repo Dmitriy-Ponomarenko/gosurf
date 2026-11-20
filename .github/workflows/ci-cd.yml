@@ -3,10 +3,12 @@ name: CI/CD
 on:
   push:
     branches:
+      - master
       - main
       - develop
   pull_request:
     branches:
+      - master
       - main
       - develop
 
@@ -59,7 +61,7 @@ jobs:
         run: npm ci
 
       - name: Run tests
-        run: npm run test -- --coverage
+        run: npm run test -- --run --coverage
 
       - name: Upload coverage
         uses: codecov/codecov-action@v3
@@ -88,11 +90,8 @@ jobs:
       - name: Build frontend (Vite React)
         run: npm run build
 
-      - name: Build Cloudflare Worker
-        run: npx wrangler build
-
       - name: Deploy to Cloudflare
-        if: github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

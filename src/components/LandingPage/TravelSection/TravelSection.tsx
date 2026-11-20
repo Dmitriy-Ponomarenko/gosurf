@@ -4,7 +4,8 @@ import type { Feature } from '../FeatureSection';
 const slides: [Feature, ...Feature[]] = [
   {
     title: 'Airlie Beach | Australia',
-    image: '/images/airlie-beach.jpg',
+    image: '/images/virgin-australia.png',
+    image2x: '/images/virgin-australia@2x.png',
     detail: 'Virgin Australia',
     detailLabel: 'Airline',
     showPlane: true,
@@ -18,6 +19,7 @@ const slides: [Feature, ...Feature[]] = [
   {
     title: 'Malibu Beach | USA',
     image: '/images/malibu-beach.jpg',
+    image2x: '/images/malibu-beach@2x.jpg',
     detail: 'California coast',
     facts: [
       { label: 'Destination', value: 'California USA' },
@@ -29,6 +31,7 @@ const slides: [Feature, ...Feature[]] = [
   {
     title: 'Cloud Nine | Philippines',
     image: '/images/cloud-nine.jpg',
+    image2x: '/images/cloud-nine@2x.jpg',
     detail: 'Siargao island',
     facts: [
       { label: 'Destination', value: 'Siargao Philippines' },

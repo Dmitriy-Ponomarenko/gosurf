@@ -7,13 +7,8 @@ import NavigationIcon from './NavigationIcon';
 const Header: React.FC<{
   location: string;
   date: string;
-  currentTime: Date;
-}> = ({ location, date, currentTime }) => {
+}> = ({ location, date }) => {
   const [day, month, year] = date.split('|').map(part => part.trim());
-  const localTime = currentTime.toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit',
-  });
   const navItems = [
     { id: 'surf', label: 'Surf', sectionId: 'surf-section' },
     {
@@ -74,13 +69,6 @@ const Header: React.FC<{
         <FiMapPin aria-hidden="true" />
         <span>{location}</span>
       </div>
-      <time
-        className={styles.sidebarClock}
-        dateTime={currentTime.toISOString()}
-        aria-label={`Your local time: ${localTime}`}
-      >
-        {localTime}
-      </time>
     </nav>
   );
 };

@@ -48,24 +48,10 @@
 .board {
   position: relative;
   flex-shrink: 0;
-  width: 110px;
-  height: 370px;
-  background: linear-gradient(160deg, #42c8ad 10%, #2ca58f 58%, #08463e);
-  border: 3px solid #3fb7a0;
-  border-radius: 50% 50% 46% 46% / 28% 28% 18% 18%;
-  box-shadow:
-    inset -15px 0 20px #0003,
-    0 20px 40px #0004;
+  width: 122px;
 }
-.boardLogo {
-  position: absolute;
-  top: 22%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 1px solid #fff9;
-  padding: 4px;
-  font-size: 10px;
-  letter-spacing: 0.2em;
+.board img {
+  width: 100%;
 }
 .hotspot {
   position: absolute;
@@ -113,6 +99,11 @@
 .extras div {
   display: grid;
   gap: 8px;
+}
+.extras img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
 .extras span {
   color: #aaa;
@@ -162,7 +153,6 @@
   }
   .board {
     width: 170px;
-    height: 520px;
   }
   .description {
     left: 75%;

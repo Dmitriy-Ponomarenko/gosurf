@@ -3,6 +3,16 @@
   outline-offset: 4px;
 }
 
+.homeContainer {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent 0,
+    transparent calc(25% - 1px),
+    rgba(255, 255, 255, 0.025) calc(25% - 1px),
+    rgba(255, 255, 255, 0.025) 25%
+  );
+}
+
 .page {
   padding: 3rem 2rem 4rem;
   color: #ffffff;

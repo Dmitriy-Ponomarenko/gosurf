@@ -1,6 +1,6 @@
 .heroSection {
   position: relative;
-  height: 100svh;
+  height: max(100svh, 650px);
   min-height: 650px;
   width: 100%;
 }
@@ -15,6 +15,8 @@
   height: 100%;
   background-size: cover;
   background-position: center;
+  background-image: var(--image);
+  background-image: image-set(var(--image) 1x, var(--image-2x) 2x);
   position: relative;
 }
 .slideBg::after {
@@ -147,8 +149,8 @@
 .scrollCue {
   position: absolute;
   z-index: 2;
-  left: clamp(160px, calc(16vw + 40px), 250px);
-  bottom: clamp(48px, 13vh, 118px);
+  left: clamp(24px, 4vw, 60px);
+  bottom: 42px;
   color: white;
   font-size: 38px;
   transition:
@@ -232,6 +234,9 @@
   white-space: nowrap;
 }
 @media (min-width: 768px) {
+  .heroSection {
+    height: max(100svh, 840px);
+  }
   .contentOverlay {
     padding: 30px 5% 30px 6%;
   }
@@ -243,6 +248,7 @@
   }
   .navigationPanel {
     margin-top: 40px;
+    width: min(800px, calc(100% - 85px));
   }
   .navWrapper {
     gap: 24px;

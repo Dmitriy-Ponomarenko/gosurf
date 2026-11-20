@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import BuySurfBoardSection from './BuySurfBoardSection/BuySurfBoardSection';
 import Curtains from './Curtains/Curtains';
+import Header from './Header/Header';
 import LocationSection from './LocationSection/LocationSection';
 import ResortsSection from './ResortsSection/ResortsSection';
 import TravelSection from './TravelSection/TravelSection';
@@ -14,6 +15,16 @@ afterEach(() => {
 });
 
 describe('landing interactions', () => {
+  it('shows the slide date without an unrelated local clock', () => {
+    render(<Header location="Oahu, Hawaii" date="20 | 06 | 2018" />);
+    expect(screen.getByText('20')).toBeInTheDocument();
+    expect(screen.getByText('06 | 2018')).toHaveAttribute(
+      'datetime',
+      '2018-06-20'
+    );
+    expect(screen.queryByLabelText(/your local time/i)).not.toBeInTheDocument();
+  });
+
   it('updates map and board details on hover', () => {
     render(
       <>
@@ -140,5 +151,25 @@ describe('landing interactions', () => {
     expect(
       screen.getByText('Stay booking is coming soon.')
     ).toBeInTheDocument();
+  });
+
+  it('updates both background image variants when changing destinations', () => {
+    const { container } = render(<TravelSection />);
+    const getVisual = () =>
+      container.querySelector<HTMLElement>('[style*="--image:"]');
+
+    expect(getVisual()?.style.getPropertyValue('--image')).toContain(
+      'virgin-australia.png'
+    );
+    expect(getVisual()?.style.getPropertyValue('--image-2x')).toContain(
+      'virgin-australia@2x.png'
+    );
+    fireEvent.click(screen.getByRole('button', { name: 'Next travel' }));
+    expect(getVisual()?.style.getPropertyValue('--image')).toContain(
+      'malibu-beach.jpg'
+    );
+    expect(getVisual()?.style.getPropertyValue('--image-2x')).toContain(
+      'malibu-beach@2x.jpg'
+    );
   });
 });
